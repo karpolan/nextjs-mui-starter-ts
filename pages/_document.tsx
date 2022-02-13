@@ -3,8 +3,9 @@ import Document, { Html, Head, Main, NextScript, DocumentProps } from 'next/docu
 import createEmotionCache from '../src/theme/createEmotionCache';
 import defaultThemeOptions from '../src/theme';
 import createEmotionServer from '@emotion/server/create-instance';
+import { SimplePaletteColorOptions } from '@mui/material';
 
-const THEME_COLOR = defaultThemeOptions.palette?.primary?.main || '#FFFFFF';
+const THEME_COLOR = (defaultThemeOptions.palette?.primary as SimplePaletteColorOptions)?.main || '#FFFFFF';
 
 interface Props extends DocumentProps {
   emotionStyleTags: React.ReactElement;
@@ -72,7 +73,9 @@ AppDocument.getInitialProps = async (ctx) => {
     originalRenderPage({
       enhanceApp: (App) =>
         function EnhanceApp(props) {
-          return <App emotionCache={cache} {...props} />;
+          // eslint-disable-next-line
+          const MainApp = App as any; // Actually it should be ClassComponent<MainAppProps> or similar to allow only .emotionCache property to be injected, but TypeScript doesn't support that.
+          return <MainApp emotionCache={cache} {...props} />;
         },
     });
 

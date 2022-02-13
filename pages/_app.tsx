@@ -12,7 +12,7 @@ function createEmotionCache() {
 // Client-side cache, shared for the whole session of the user in the browser.
 const CLIENT_SIDE_EMOTION_CACHE = createEmotionCache();
 
-interface Props extends AppProps {
+export interface MainAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 
@@ -20,7 +20,11 @@ interface Props extends AppProps {
  * Main application component.
  * Injects the theme provider and the Emotion styling cache.
  */
-const MainApp: FunctionComponent<Props> = ({ Component, emotionCache = CLIENT_SIDE_EMOTION_CACHE, pageProps }) => {
+const MainApp: FunctionComponent<MainAppProps> = ({
+  Component,
+  emotionCache = CLIENT_SIDE_EMOTION_CACHE,
+  pageProps,
+}) => {
   return (
     <AppThemeProvider emotionCache={emotionCache}>
       <Component {...pageProps} />
