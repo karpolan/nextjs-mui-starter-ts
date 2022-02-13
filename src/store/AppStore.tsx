@@ -11,7 +11,7 @@ export interface AppStoreState {
   isAuthenticated: boolean;
   currentUser?: object | undefined;
 }
-const initialAppState: AppStoreState = {
+const INITIAL_APP_STATE: AppStoreState = {
   darkMode: false, // Overridden by useMediaQuery('(prefers-color-scheme: dark)') in AppStore
   isAuthenticated: false, // Overridden in AppStore by checking auth token
 };
@@ -20,7 +20,7 @@ const initialAppState: AppStoreState = {
  * Instance of React Context for global AppStore
  */
 type AppContextReturningType = [AppStoreState, React.Dispatch<any>];
-const AppContext = createContext<AppContextReturningType>([initialAppState, () => null]);
+const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, () => null]);
 
 /**
  * Main global Store as HOC with React Context API
@@ -37,7 +37,7 @@ const AppStore: React.FC = ({ children }) => {
   // const tokenExists = Boolean(loadToken());
 
   const initialState: AppStoreState = {
-    ...initialAppState,
+    ...INITIAL_APP_STATE,
     darkMode: previousDarkMode || prefersDarkMode,
     // isAuthenticated: tokenExists,
   };
