@@ -1,22 +1,45 @@
 {
   "name": "nextjs-typescript-mui-starter",
+  "version": "0.1.1",
+  "description": "NextJS + MUI starter using TypeScript",
+  "author": {
+    "name": "Anton Karpenko",
+    "email": "i@karpolan.com",
+    "url": "https://karpolan.com"
+  },
   "private": true,
+  "keywords": [
+    "nextjs",
+    "react",
+    "typescript",
+    "mui",
+    "material",
+    "material ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karpolan/nextjs-typescript-mui-starterr.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "format": "node_modules/.bin/prettier ./ --write",
+    "lint": "next lint",
     "start": "next start",
-    "lint": "next lint"
+    "test": "jest --watch",
+    "type": "tsc"
   },
   "dependencies": {
-    "next": "12.0.10",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "17.0.17",
     "@types/react": "17.0.39",
     "eslint": "8.9.0",
     "eslint-config-next": "12.0.10",
+    "prettier": "^2.5.1",
     "typescript": "4.5.5"
   }
 }
