@@ -7,7 +7,6 @@ const Home: NextPage = () => {
       <Head>
         <title>_TITLE_</title>
         <meta name="description" content="_DESCRIPTION_" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header>NextJS + MUI starter</header>

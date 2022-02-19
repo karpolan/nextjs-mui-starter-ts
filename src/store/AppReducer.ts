@@ -5,6 +5,7 @@ import { AppStoreState } from './AppStore';
  * Reducer for global AppStore using "Redux styled" actions
  * @param {object} state - current/default state
  * @param {string} action.type - unique name of the action
+ * @param {string} action.action - alternate to action.type property, unique name of the action
  * @param {*} [action.payload] - optional data object or the function to get data object
  */
 const AppReducer: React.Reducer<AppStoreState, any> = (state, action) => {

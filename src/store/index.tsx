@@ -1,3 +1,3 @@
-import { AppStore, AppContext, useAppStore, withAppStore } from './AppStore';
+import { AppStore, useAppStore, withAppStore } from './AppStore';
 
-export { AppStore as default, AppStore, AppContext, useAppStore, withAppStore };
+export { AppStore as default, AppStore, useAppStore, withAppStore };

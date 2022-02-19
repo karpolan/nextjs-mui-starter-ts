@@ -20,9 +20,10 @@ class AppDocument extends Document<Props> {
     return (
       <Html lang="en">
         <Head>
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="manifest" href="/site.webmanifest" />
           {/* PWA primary color */}
           <meta name="theme-color" content={THEME_COLOR} />
-          <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* Note: Replace Roboto with other font if needed */}
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}

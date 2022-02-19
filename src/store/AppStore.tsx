@@ -4,7 +4,7 @@ import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
 
 /**
- * AppState structure and initial values
+ * AppState data structure and initial values
  */
 export interface AppStoreState {
   darkMode: boolean;
@@ -63,16 +63,21 @@ const useAppStore = (): AppContextReturningType => useContext(AppContext);
  * import {withAppStore} from './store'
  * ...
  * class MyComponent
+ *
+ * render () {
+ *   const [state, dispatch] = this.props.appStore;
+ *   ...
+ * }
  * ...
  * export default withAppStore(MyComponent)
  */
 interface WithAppStoreProps {
-  store: object;
+  appStore: AppContextReturningType;
 }
 const withAppStore =
   (Component: React.ComponentType<WithAppStoreProps>): React.FC =>
   (props) => {
-    return <Component {...props} store={useAppStore()} />;
+    return <Component {...props} appStore={useAppStore()} />;
   };
 
-export { AppStore, AppContext, useAppStore, withAppStore };
+export { AppStore, useAppStore, withAppStore };

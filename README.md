@@ -37,13 +37,11 @@ Launches the test runner in the interactive watch mode.<br />
 
 ### `yarn build` or `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production or local development to the `.next` folder.<br />
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `yarn build:static` or `npm run build:static`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Builds the SSG (static site generator) version of the app in the `out` folder.<br />
 
 ## Deploy on Vercel
 
