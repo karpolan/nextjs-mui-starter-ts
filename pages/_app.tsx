@@ -1,7 +1,35 @@
 import type { AppProps } from 'next/app';
+import { FunctionComponent } from 'react';
+import createCache, { EmotionCache } from '@emotion/cache';
+import { AppThemeProvider } from '../src/theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+// Setting .prepend: true moves MUI styles to the top of the <head> so they're loaded first.
+// It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
+function createEmotionCache() {
+  return createCache({ key: 'css', prepend: true });
 }
 
-export default MyApp;
+// Client-side cache, shared for the whole session of the user in the browser.
+const CLIENT_SIDE_EMOTION_CACHE = createEmotionCache();
+
+export interface MainAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+/**
+ * Main application component.
+ * Injects the theme provider and the Emotion styling cache.
+ */
+const MainApp: FunctionComponent<MainAppProps> = ({
+  Component,
+  emotionCache = CLIENT_SIDE_EMOTION_CACHE,
+  pageProps,
+}) => {
+  return (
+    <AppThemeProvider emotionCache={emotionCache}>
+      <Component {...pageProps} />
+    </AppThemeProvider>
+  );
+};
+
+export default MainApp;
