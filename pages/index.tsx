@@ -1,5 +1,7 @@
+import { Stack } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { AppIcon } from '../src/components';
 
 const Home: NextPage = () => {
   return (
@@ -9,11 +11,12 @@ const Home: NextPage = () => {
         <meta name="description" content="_DESCRIPTION_" />
       </Head>
 
-      <header>NextJS + MUI starter</header>
-
-      <main>Main content</main>
-
-      <footer>Footer</footer>
+      <Stack>
+        <AppIcon icon="home" />
+        <AppIcon icon="logo" />
+        <AppIcon icon="home" />
+        <AppIcon icon="home" />
+      </Stack>
     </>
   );
 };

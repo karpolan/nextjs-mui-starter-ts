@@ -19,7 +19,7 @@ const INITIAL_APP_STATE: AppStoreState = {
 /**
  * Instance of React Context for global AppStore
  */
-type AppContextReturningType = [AppStoreState, React.Dispatch<any>];
+export type AppContextReturningType = [AppStoreState, React.Dispatch<any>];
 const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, () => null]);
 
 /**
