@@ -1,5 +1,6 @@
 import { Tooltip } from '@mui/material';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { FunctionComponent } from 'react';
 import AppIcon from '../AppIcon';
 
 interface Props extends IconButtonProps {
@@ -19,7 +20,7 @@ interface Props extends IconButtonProps {
  * @param {string} [iconColor] - color of Icon to render inside the IconButton
  * @param {string} [title] - when set, the IconButton is rendered inside Tooltip with this text
  */
-const AppIconButton: React.FC<Props> = ({ color, className, children, disabled, icon, title, ...restOfProps }) => {
+const AppIconButton: FunctionComponent<Props> = ({ color, children, disabled, icon, title, ...restOfProps }) => {
   const renderIcon = () => (
     <IconButton disabled={disabled} {...restOfProps}>
       <AppIcon icon={icon} />
