@@ -1,7 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
-  // children: ReactNode;
+  children: ReactNode;
   name: string;
 }
 
@@ -47,9 +47,6 @@ class ErrorBoundary extends Component<Props, State> {
             <br />
             {this.state?.errorInfo?.componentStack}
           </details>
-          <p>
-            Go to <a href="/">home page</a>
-          </p>
         </div>
       );
     }

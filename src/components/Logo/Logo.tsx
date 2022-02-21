@@ -15,7 +15,7 @@ interface LogoProps extends ImageProps {
 }
 
 const LogoAsNextImage: FunctionComponent<ImageProps> = ({ width, height }) => {
-  return <Image src={URL_LOGO} width={width} height={height} />;
+  return <Image src={URL_LOGO} width={width} height={height} alt="Logotype" />;
 };
 
 const LogoAsMuiAvatar: FunctionComponent<ImageProps> = ({ width, height }) => {
