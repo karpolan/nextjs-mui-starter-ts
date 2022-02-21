@@ -15,7 +15,7 @@ interface Props {
 const NavBar: FunctionComponent<Props> = ({ items }) => {
   const router = useRouter();
 
-  const handleChange = useCallback(
+  const onNavigationChange = useCallback(
     (event: React.ChangeEvent<{}>, newValue: string) => {
       router.push(newValue);
     },
@@ -26,7 +26,7 @@ const NavBar: FunctionComponent<Props> = ({ items }) => {
     <BottomNavigation
       value={router.pathname} // Automatically highlights bottom navigation for current page
       showLabels // Always show labels on bottom navigation, otherwise only for active page
-      onChange={handleChange}
+      onChange={onNavigationChange}
     >
       {items.map(({ title, path, icon }) => (
         <BottomNavigationAction key={`${title}-${path}`} label={title} value={path} icon={<AppIcon icon={icon} />} />
