@@ -1,16 +1,11 @@
 import { FunctionComponent, useCallback } from 'react';
-import Divider from '@mui/material/Divider';
-import Drawer, { DrawerProps } from '@mui/material/Drawer';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import Tooltip from '@mui/material/Tooltip';
-import { useAppStore } from '../../store/AppStore';
+import { Stack, Divider, Drawer, DrawerProps, FormControlLabel, Switch, Tooltip } from '@mui/material';
 import { AppIconButton } from '../../components';
-
-import SideBarNavigation from './SideBarNavigation';
+import { useAppStore } from '../../store/AppStore';
 import { LinkToPage } from '../../utils/type';
-import { useEventLogout, useEventSwitchDarkMode, useOnMobile } from '../hooks';
-import { Stack } from '@mui/material';
+import { useEventLogout, useEventSwitchDarkMode, useOnMobile } from '../../hooks';
+import SideBarNavList from './NavList';
+import { TOPBAR_DESKTOP_HEIGHT } from '../TopBar';
 
 export const SIDEBAR_MOBILE_ANCHOR = 'left'; // 'right';
 export const SIDEBAR_DESKTOP_ANCHOR = 'left'; // 'right';
@@ -53,8 +48,8 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
       PaperProps={{
         sx: {
           width: SIDEBAR_WIDTH,
-          marginTop: onMobile ? 0 : '64px',
-          height: onMobile ? '100%' : 'calc(100% - 64px)',
+          marginTop: onMobile ? 0 : variant === 'temporary' ? 0 : TOPBAR_DESKTOP_HEIGHT,
+          height: onMobile ? '100%' : variant === 'temporary' ? '100%' : `calc(100% - ${TOPBAR_DESKTOP_HEIGHT})`,
         },
       }}
       onClose={onClose}
@@ -67,7 +62,8 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
         {...restOfProps}
         onClick={handleAfterLinkClick}
       >
-        <SideBarNavigation items={items} showIcons />
+        <SideBarNavList items={items} showIcons />
+
         <Divider />
 
         <Stack

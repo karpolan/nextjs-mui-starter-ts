@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import AppIcon from '../components/AppIcon';
 import { LinkToPage } from '../utils/type';
 
-type Props = {
+interface Props {
   items: Array<LinkToPage>;
-};
+}
 
 /**
  * Renders horizontal Navigation Bar using MUI BottomNavigation component
@@ -14,18 +14,20 @@ type Props = {
  */
 const NavBar: FunctionComponent<Props> = ({ items }) => {
   const router = useRouter();
-  const [value, setValue] = useState('/');
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<{}>, newValue: string) => {
-      setValue(newValue);
       router.push(newValue);
     },
     [router]
   );
 
   return (
-    <BottomNavigation value={value} onChange={handleChange} showLabels>
+    <BottomNavigation
+      value={router.pathname} // Automatically highlights bottom navigation for current page
+      showLabels // Always show labels on bottom navigation, otherwise only for active page
+      onChange={handleChange}
+    >
       {items.map(({ title, path, icon }) => (
         <BottomNavigationAction key={`${title}-${path}`} label={title} value={path} icon={<AppIcon icon={icon} />} />
       ))}

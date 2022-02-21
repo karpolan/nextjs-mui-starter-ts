@@ -1,6 +1,8 @@
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { FunctionComponent, ReactNode } from 'react';
 
+export const TOPBAR_MOBILE_HEIGHT = '56px';
+export const TOPBAR_DESKTOP_HEIGHT = '64px';
 interface Props {
   endNode?: ReactNode;
   startNode?: ReactNode;
@@ -14,11 +16,11 @@ const TopBar: FunctionComponent<Props> = ({ endNode, startNode, title = '', ...r
   return (
     <AppBar
       component="div"
-      sx={{
-        // boxShadow: 'none', // Uncomment to hide shadow
-        minWidth: '20rem',
-        // backgroundColor: theme.palette.primary.main, // Uncomment if you also need colored background in dark mode
-      }}
+      sx={
+        {
+          // boxShadow: 'none', // Uncomment to hide shadow
+        }
+      }
       {...restOfProps}
     >
       <Toolbar disableGutters sx={{ paddingX: 1 }}>

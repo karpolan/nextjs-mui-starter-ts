@@ -1,8 +1,8 @@
 import { FunctionComponent, useCallback, useState } from 'react';
-import { Grid } from '@mui/material/';
+import { Stack } from '@mui/material/';
 import NavBar from './NavBar';
-import { useEventSwitchDarkMode, useOnMobile } from './hooks';
-import TopBar from './TopBar';
+import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
+import TopBar, { TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './TopBar';
 import { LinkToPage } from '../utils/type';
 import { useAppStore } from '../store';
 import { AppIconButton } from '../components';
@@ -15,7 +15,7 @@ const TITLE_PUBLIC = '_TITLE_'; // TODO: change to your app name or other word
 /**
  * Sidebar items with links
  */
-const SIDE_BAR_ITEMS: Array<LinkToPage> = [
+const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -36,7 +36,7 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
 /**
  * Bottom Navigation links
  */
-const NAV_BAR_ITEMS: Array<LinkToPage> = [
+const NAVBAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -78,15 +78,13 @@ const PublicLayout: FunctionComponent = ({ children }) => {
   }, [sideBarVisible]);
 
   return (
-    <Grid
-      container
-      direction="column"
+    <Stack
       sx={{
         minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? 56 : 64,
+        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
       }}
     >
-      <Grid item component="header">
+      <Stack component="header">
         <TopBar
           startNode={<AppIconButton icon="logo" onClick={onSideBarOpen} />}
           title={title}
@@ -104,13 +102,12 @@ const PublicLayout: FunctionComponent = ({ children }) => {
           anchor="left"
           open={sideBarVisible}
           variant="temporary"
-          items={SIDE_BAR_ITEMS}
+          items={SIDEBAR_ITEMS}
           onClose={onSideBarClose}
         />
-      </Grid>
+      </Stack>
 
-      <Grid
-        item
+      <Stack
         component="main"
         sx={{
           flexGrow: 1, // Takes all possible space
@@ -118,12 +115,12 @@ const PublicLayout: FunctionComponent = ({ children }) => {
         }}
       >
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
-      </Grid>
+      </Stack>
 
-      <Grid item component="footer">
-        <NavBar items={NAV_BAR_ITEMS} />
-      </Grid>
-    </Grid>
+      <Stack component="footer">
+        <NavBar items={NAVBAR_ITEMS} />
+      </Stack>
+    </Stack>
   );
 };
 

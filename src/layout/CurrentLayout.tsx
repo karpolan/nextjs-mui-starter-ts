@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { useIsAuthenticated } from './hooks';
+import { useIsAuthenticated } from '../hooks';
 import PrivateLayout from './PrivateLayout';
 import PublicLayout from './PublicLayout';
 

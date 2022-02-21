@@ -3,9 +3,9 @@ import { Stack } from '@mui/material';
 import { LinkToPage } from '../utils/type';
 import { useRouter } from 'next/router';
 import Footer from '../components/Footer';
-import { useOnMobile } from './hooks';
+import { useOnMobile } from '../hooks/layout';
 import { useAppStore } from '../store';
-import TopBar from './TopBar';
+import TopBar, { TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './TopBar';
 import SideBar from './SideBar';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { SIDEBAR_DESKTOP_ANCHOR, SIDEBAR_MOBILE_ANCHOR, SIDEBAR_WIDTH } from './SideBar/SideBar';
@@ -27,7 +27,7 @@ function updateDocumentTitle(title = '') {
 /**
  * "Link to Page" items in Sidebar
  */
-const SIDE_BAR_PRIVATE_ITEMS: Array<LinkToPage> = [
+const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Home',
     path: '/',
@@ -61,7 +61,7 @@ const PrivateLayout: FunctionComponent = ({ children }) => {
 
   const handleLogoClick = useCallback(() => {
     // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
-    router.push(SIDE_BAR_PRIVATE_ITEMS?.[0]?.path || '/');
+    router.push(SIDEBAR_ITEMS?.[0]?.path || '/');
   }, [router]);
 
   const handleSideBarOpen = useCallback(() => {
@@ -80,7 +80,7 @@ const PrivateLayout: FunctionComponent = ({ children }) => {
       direction="column"
       sx={{
         minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? 56 : 64,
+        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
         paddingLeft: SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
         paddingRight: SIDEBAR_DESKTOP_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
       }}
@@ -92,7 +92,7 @@ const PrivateLayout: FunctionComponent = ({ children }) => {
           anchor={onMobile ? SIDEBAR_MOBILE_ANCHOR : SIDEBAR_DESKTOP_ANCHOR}
           open={shouldOpenSideBar}
           variant={onMobile ? 'temporary' : 'persistent'}
-          items={SIDE_BAR_PRIVATE_ITEMS}
+          items={SIDEBAR_ITEMS}
           onClose={handleSideBarClose}
         />
       </Stack>
