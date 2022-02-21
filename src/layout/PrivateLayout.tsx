@@ -25,7 +25,7 @@ function updateDocumentTitle(title = '') {
 }
 
 /**
- * "Link to Page" items in Sidebar
+ * Sidebar navigation items with links
  */
 const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
@@ -59,16 +59,16 @@ const PrivateLayout: FunctionComponent = ({ children }) => {
   const [state] = useAppStore();
   const [sideBarVisible, setSideBarVisible] = useState(false);
 
-  const handleLogoClick = useCallback(() => {
+  const onLogoClick = useCallback(() => {
     // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
     router.push(SIDEBAR_ITEMS?.[0]?.path || '/');
   }, [router]);
 
-  const handleSideBarOpen = useCallback(() => {
+  const onSideBarOpen = useCallback(() => {
     if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
   }, [sideBarVisible]);
 
-  const handleSideBarClose = useCallback(() => {
+  const onSideBarClose = useCallback(() => {
     if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
   }, [sideBarVisible]);
 
@@ -93,7 +93,7 @@ const PrivateLayout: FunctionComponent = ({ children }) => {
           open={shouldOpenSideBar}
           variant={onMobile ? 'temporary' : 'persistent'}
           items={SIDEBAR_ITEMS}
-          onClose={handleSideBarClose}
+          onClose={onSideBarClose}
         />
       </Stack>
 

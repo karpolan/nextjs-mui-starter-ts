@@ -13,7 +13,7 @@ import { IS_SERVER } from '../utils/NextJS';
 const TITLE_PUBLIC = '_TITLE_'; // TODO: change to your app name or other word
 
 /**
- * Sidebar items with links
+ * Sidebar navigation items with links
  */
 const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
