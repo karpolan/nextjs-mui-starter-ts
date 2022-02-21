@@ -37,6 +37,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "clsx": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
