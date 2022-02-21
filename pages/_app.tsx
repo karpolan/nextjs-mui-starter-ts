@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app';
 import { FunctionComponent } from 'react';
 import createCache, { EmotionCache } from '@emotion/cache';
 import { AppThemeProvider } from '../src/theme';
+import AppStore from '../src/store';
+import CurrentLayout from '../src/layout';
 
 // Setting .prepend: true moves MUI styles to the top of the <head> so they're loaded first.
 // It allows developers to easily override MUI styles with other styling solutions, like CSS modules.
@@ -26,9 +28,13 @@ const MainApp: FunctionComponent<MainAppProps> = ({
   pageProps,
 }) => {
   return (
-    <AppThemeProvider emotionCache={emotionCache}>
-      <Component {...pageProps} />
-    </AppThemeProvider>
+    <AppStore>
+      <AppThemeProvider emotionCache={emotionCache}>
+        <CurrentLayout>
+          <Component {...pageProps} />
+        </CurrentLayout>
+      </AppThemeProvider>
+    </AppStore>
   );
 };
 

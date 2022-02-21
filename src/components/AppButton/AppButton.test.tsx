@@ -1,0 +1,129 @@
+import { render, screen } from '@testing-library/react';
+import AppButton from './AppButton';
+import { ColorName } from '../../utils/style';
+import { AppThemeProvider } from '../../theme';
+
+/**
+ * Test specific color for AppButton
+ * @param {string} colorName - name of the color, one of ColorName type
+ * @param {string} [expectedClassName] - optional value to be found in className (color "true" may use "success" class name)
+ * @param {boolean} [ignoreClassName] - optional flag to ignore className (color "inherit" doesn't use any class name)
+ */
+function testButtonColor(colorName: string, expectedClassName = colorName, ignoreClassName = false) {
+  it(`supports "${colorName}" color`, async () => {
+    let text = `${colorName} button`;
+    await render(
+      <AppThemeProvider>
+        <AppButton color={colorName as ColorName}>{text}</AppButton>
+      </AppThemeProvider>
+    );
+
+    let span = await screen.getByText(text); // <span> with specific text
+    expect(span).toBeDefined();
+
+    let button = await span.closest('button'); // parent <button> element
+    expect(button).toBeDefined();
+    // console.log('button.className:', button?.className)
+    if (!ignoreClassName) {
+      expect(button?.className?.includes(`makeStyles-${expectedClassName}`)).toBeTruthy(); // There is "makeStyles-[expectedClassName]-xxx" class
+    }
+  });
+}
+
+describe('AppButton component', () => {
+  //   beforeEach(() => {});
+
+  it('renders itself', async () => {
+    let text = 'sample button';
+    await render(
+      <AppThemeProvider>
+        <AppButton>{text}</AppButton>
+      </AppThemeProvider>
+    );
+    let span = await screen.getByText(text);
+    expect(span).toBeDefined();
+    expect(span).toHaveTextContent(text);
+    let button = await span.closest('button'); // parent <button> element
+    expect(button).toBeDefined();
+    expect(button).toHaveAttribute('type', 'button'); // not "submit" or "input" by default
+  });
+
+  testButtonColor('primary');
+  testButtonColor('secondary');
+  testButtonColor('error');
+  testButtonColor('warning');
+  testButtonColor('info');
+  testButtonColor('success');
+  // testButtonColor('true');
+  // testButtonColor('false');
+
+  // testButtonColor('default');
+  // testButtonColor('inherit', 'default', true);
+
+  it('supports .className property', async () => {
+    let text = 'button with specific class';
+    let className = 'someClassName';
+    await render(
+      <AppThemeProvider>
+        <AppButton className={className}>{text}</AppButton>
+      </AppThemeProvider>
+    );
+    let span = screen.getByText(text);
+    expect(span).toBeDefined();
+    let button = span.closest('button'); // parent <button> element
+    expect(button).toBeDefined();
+    expect(button).toHaveClass(className);
+  });
+
+  it('supports .label property', async () => {
+    let text = 'button with label';
+    await render(
+      <AppThemeProvider>
+        <AppButton label={text} />
+      </AppThemeProvider>
+    );
+    let span = screen.getByText(text);
+    expect(span).toBeDefined();
+    let button = span.closest('button'); // parent <button> element
+    expect(button).toBeDefined();
+  });
+
+  it('supports .text property', async () => {
+    let text = 'button with text';
+    await render(
+      <AppThemeProvider>
+        <AppButton text={text} />
+      </AppThemeProvider>
+    );
+    let span = screen.getByText(text);
+    expect(span).toBeDefined();
+    let button = span.closest('button'); // parent <button> element
+    expect(button).toBeDefined();
+  });
+
+  it('supports .startIcon property', async () => {
+    let text = 'button with start icon';
+    await render(
+      <AppThemeProvider>
+        <AppButton text={text} startIcon="ArrowLeft" />
+      </AppThemeProvider>
+    );
+    let span = screen.getByText(text);
+    let previousSibling = span?.previousSibling; // icon before text as <span> element
+    expect(previousSibling).toBeDefined();
+    expect(previousSibling).toHaveClass('MuiButton-startIcon');
+  });
+
+  it('supports .endIcon property', async () => {
+    let text = 'button with end icon';
+    await render(
+      <AppThemeProvider>
+        <AppButton text={text} endIcon="ArrowRight" />
+      </AppThemeProvider>
+    );
+    let span = screen.getByText(text);
+    let nextSibling = span?.nextSibling; // icon after text as <span> element
+    expect(nextSibling).toBeDefined();
+    expect(nextSibling).toHaveClass('MuiButton-endIcon');
+  });
+});

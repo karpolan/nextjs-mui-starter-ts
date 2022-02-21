@@ -23,6 +23,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "next build && next export",
     "format": "node_modules/.bin/prettier ./ --write",
     "lint": "next lint",
     "start": "next start",
@@ -36,6 +37,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "clsx": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"
