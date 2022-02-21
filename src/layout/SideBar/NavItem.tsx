@@ -7,7 +7,6 @@ import { AppIcon, AppLink } from '../../components';
 interface Props extends LinkToPage {
   openInNewTab?: boolean;
   selected?: boolean;
-  subtitle?: string;
   onClick?: React.MouseEventHandler;
 }
 
