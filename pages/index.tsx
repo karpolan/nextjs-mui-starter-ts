@@ -46,7 +46,7 @@ const Home: NextPage = () => {
               Green
             </AppButton>
             <AppButton color="blue" startIcon="menu" endIcon="close">
-              Green
+              Blue
             </AppButton>
             <AppButton color="#f0f" to="/">
               #f0f
