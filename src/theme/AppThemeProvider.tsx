@@ -1,11 +1,11 @@
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import { FunctionComponent, useMemo } from 'react';
+import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
 import { useAppStore } from '../store';
 import DARK_THEME from './dark';
 import LIGHT_THEME from './light';
 
-interface Props {
+interface Props extends PropsWithChildren<{}> {
   emotionCache: EmotionCache; // You can omit it if you don't want to use Emotion styling library
 }
 

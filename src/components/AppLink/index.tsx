@@ -1,6 +1,4 @@
-// import AppLink from './ReactRouterLink';
-import AppLink, { AppLinkProps } from './AppLinkForNext';
-// import type { AppLinkProps } from './NextLink';
+import AppLink, { AppLinkForNextProps as AppLinkProp } from './AppLinkForNext';
 
-export type { AppLinkProps };
+export type { AppLinkProp };
 export { AppLink as default, AppLink };

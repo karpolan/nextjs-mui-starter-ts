@@ -13,6 +13,7 @@ interface State {
 
 /**
  * Error boundary wrapper to save Application parts from falling
+ * @component ErrorBoundary
  * @param {string} [props.name] - name of the wrapped segment, "Error Boundary" by default
  */
 class ErrorBoundary extends Component<Props, State> {

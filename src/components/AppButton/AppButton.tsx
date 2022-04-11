@@ -1,9 +1,13 @@
 import Button, { ButtonProps } from '@mui/material/Button';
 import { FunctionComponent, ReactNode, useMemo } from 'react';
 import AppIcon from '../AppIcon';
+import AppLink from '../AppLink';
 import { APP_BUTTON_VARIANT } from '../config';
 
-interface Props extends ButtonProps {
+const MUI_BUTTON_COLORS = ['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning'];
+
+export interface AppButtonProps extends Omit<ButtonProps, 'color' | 'endIcon' | 'startIcon'> {
+  color?: string; // Not only 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
   endIcon?: string | ReactNode;
   label?: string; // Alternate to .text
   text?: string; // Alternate to .label
@@ -19,21 +23,24 @@ interface Props extends ButtonProps {
 /**
  * Application styled Material UI Button with Box around to specify margins using props
  * @component AppButton
- * @param {string} [color] - color of the button body 'primary', 'secondary', 'warning', and so on
+ * @param {string} [color] - when passing MUI value ('primary', 'secondary', and so on), it is color of the button body, otherwise it is color of text and icons
  * @param {string} [children] - content to render, overrides .label and .text props
- * @param {tring | ReactNode} [endIcon] - name of AppIcon or ReactNode to show after the button label
+ * @param {string | ReactNode} [endIcon] - name of AppIcon or ReactNode to show after the button label
  * @param {string} [label] - text to render, alternate to .text
- * @param {tring | ReactNode} [startIcon] - name of AppIcon or ReactNode to show before the button label
+ * @param {string | ReactNode} [startIcon] - name of AppIcon or ReactNode to show before the button label
  * @param {Array<func| object| bool> | func | object} [sx] - additional CSS styles to apply to the button
  * @param {string} [text] - text to render, alternate to .label
+ * @param {string} [underline] - controls underline style when button used as link, one of 'none', 'hover', or 'always'
+ * @param {string} [variant] - MUI variant of the button, one of 'text', 'outlined', or 'contained'
  */
-const AppButton: FunctionComponent<Props> = ({
+const AppButton: FunctionComponent<AppButtonProps> = ({
   children,
-  color = 'inherit',
+  color: propColor = 'inherit',
+  component: propComponent,
   endIcon,
   label,
   startIcon,
-  sx = { margin: 1 },
+  sx: propSx = { margin: 1 },
   text,
   underline = 'none',
   variant = APP_BUTTON_VARIANT,
@@ -49,8 +56,26 @@ const AppButton: FunctionComponent<Props> = ({
     [endIcon]
   );
 
+  const isMuiColor = useMemo(() => MUI_BUTTON_COLORS.includes(propColor), [propColor]);
+
+  const componentToRender =
+    !propComponent && (restOfProps?.href || restOfProps?.to) ? AppLink : propComponent ?? Button;
+
+  const sxToRender = {
+    ...propSx,
+    ...(isMuiColor ? {} : { color: propColor }),
+  };
+
   return (
-    <Button variant={variant} {...{ ...restOfProps, underline }}>
+    <Button
+      component={componentToRender}
+      color={isMuiColor ? (propColor as ButtonProps['color']) : 'inherit'}
+      endIcon={iconEnd}
+      startIcon={iconStart}
+      sx={sxToRender}
+      variant={variant}
+      {...{ ...restOfProps, underline }}
+    >
       {children || label || text}
     </Button>
   );

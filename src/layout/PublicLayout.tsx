@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useState } from 'react';
+import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
 import { Stack } from '@mui/material/';
 import NavBar from './NavBar';
 import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
@@ -57,7 +57,7 @@ const NAVBAR_ITEMS: Array<LinkToPage> = [
 /**
  * Renders "Public Layout" composition
  */
-const PublicLayout: FunctionComponent = ({ children }) => {
+const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const onMobile = useOnMobile();
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const [state] = useAppStore();
