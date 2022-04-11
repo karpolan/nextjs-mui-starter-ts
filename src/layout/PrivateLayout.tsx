@@ -9,6 +9,7 @@ import TopBar, { TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './TopBar';
 import SideBar from './SideBar';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { SIDEBAR_DESKTOP_ANCHOR, SIDEBAR_MOBILE_ANCHOR, SIDEBAR_WIDTH } from './SideBar/SideBar';
+import { PropsWithChildren } from 'react';
 
 const TITLE_PRIVATE = 'Private - _TITLE_'; // TODO: change to your app name or other word, schema is: `Page Title - {TITLE_PRIVATE}`
 
@@ -53,7 +54,7 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
 /**
  * Renders "Private Layout" composition
  */
-const PrivateLayout: FunctionComponent = ({ children }) => {
+const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const router = useRouter();
   const onMobile = useOnMobile();
   const [state] = useAppStore();
