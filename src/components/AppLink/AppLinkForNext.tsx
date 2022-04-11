@@ -44,7 +44,7 @@ const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedPro
 /**
  * Props for AppLinkForNext component
  */
-export type AppLinkProps = {
+export type AppLinkForNextProps = {
   activeClassName?: string;
   as?: NextLinkProps['as'];
   href?: string | NextLinkProps['href'];
@@ -63,7 +63,7 @@ export type AppLinkProps = {
  * @param {string} [href] - external link URI
  * @param {boolean} [openInNewTab] - link will be opened in new tab when true
  */
-const AppLinkForNext = React.forwardRef<HTMLAnchorElement, AppLinkProps>(function Link(props, ref) {
+const AppLinkForNext = React.forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
     as: linkAs,

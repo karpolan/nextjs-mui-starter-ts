@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { FunctionComponent, PropsWithChildren } from 'react';
 import { render, screen } from '@testing-library/react';
-import AppLink from './';
-// for React Router
-// import { AppRouter as MockRouter } from '../../routes/';
-
-// for NextJS Router
+import AppLink, { AppLinkProp } from './';
 import { createRouter, NextRouter } from 'next/router';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
+
+/**
+ * Mocked Router for testing
+ * See https://github.com/vercel/next.js/discussions/23911#discussioncomment-650402
+ */
 const router: NextRouter = createRouter('', {}, '', {
   subscription: jest.fn().mockImplementation(Promise.resolve),
   initialProps: {},
@@ -16,37 +17,38 @@ const router: NextRouter = createRouter('', {}, '', {
   wrapApp: jest.fn(),
   isFallback: false,
 });
-const MockRouter: React.FC = ({ children }) => (
+const MockRouter: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => (
   <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
+);
+
+/**
+ * AppLink wrapped with Mocked Router
+ */
+const ComponentToTest: FunctionComponent<AppLinkProp> = (props) => (
+  <MockRouter>
+    <AppLink {...props} />
+  </MockRouter>
 );
 
 /**
  * Tests for <AppLink/> component
  */
 describe('AppLink component', () => {
-  it('renders itself', async () => {
+  it('renders itself', () => {
     const text = 'sample text';
     const url = 'https://example.com/';
-    await render(
-      <MockRouter>
-        <AppLink href={url}>{text}</AppLink>
-      </MockRouter>
-    );
-    const link = await screen.getByText(text);
+    render(<ComponentToTest href={url}>{text}</ComponentToTest>);
+    const link = screen.getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
   });
 
-  it('supports external link', async () => {
+  it('supports external link', () => {
     const text = 'external link';
     const url = 'https://example.com/';
-    await render(
-      <MockRouter>
-        <AppLink href={url}>{text}</AppLink>
-      </MockRouter>
-    );
-    const link = await screen.getByText(text);
+    render(<ComponentToTest href={url}>{text}</ComponentToTest>);
+    const link = screen.getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -57,15 +59,11 @@ describe('AppLink component', () => {
     expect(rel.includes('noopener')).toBeTruthy(); // rel="noreferrer check
   });
 
-  it('supports internal link', async () => {
+  it('supports internal link', () => {
     const text = 'internal link';
     const url = '/internal-link';
-    await render(
-      <MockRouter>
-        <AppLink to={url}>{text}</AppLink>
-      </MockRouter>
-    );
-    const link = await screen.getByText(text);
+    render(<ComponentToTest to={url}>{text}</ComponentToTest>);
+    const link = screen.getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -73,18 +71,16 @@ describe('AppLink component', () => {
     expect(link).not.toHaveAttribute('rel');
   });
 
-  it('supports openInNewTab property', async () => {
+  it('supports openInNewTab property', () => {
     // External link with openInNewTab={false}
     let text = 'external link in same tab';
     let url = 'https://example.com/';
-    await render(
-      <MockRouter>
-        <AppLink href={url} openInNewTab={false}>
-          {text}
-        </AppLink>
-      </MockRouter>
+    render(
+      <ComponentToTest href={url} openInNewTab={false}>
+        {text}
+      </ComponentToTest>
     );
-    let link = await screen.getByText(text);
+    let link = screen.getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -94,14 +90,12 @@ describe('AppLink component', () => {
     // Internal link with openInNewTab={true}
     text = 'internal link in new tab';
     url = '/internal-link-in-new-tab';
-    await render(
-      <MockRouter>
-        <AppLink to={url} openInNewTab>
-          {text}
-        </AppLink>
-      </MockRouter>
+    render(
+      <ComponentToTest to={url} openInNewTab>
+        {text}
+      </ComponentToTest>
     );
-    link = await screen.getByText(text);
+    link = screen.getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveAttribute('href', url);
     expect(link).toHaveTextContent(text);
@@ -112,18 +106,16 @@ describe('AppLink component', () => {
     expect(rel.includes('noopener')).toBeTruthy(); // rel="noreferrer check
   });
 
-  it('supports className property', async () => {
+  it('supports className property', () => {
     let text = 'internal link with specific class';
     let url = '/internal-link-with-class';
     let className = 'someClassName';
-    await render(
-      <MockRouter>
-        <AppLink to={url} className={className}>
-          {text}
-        </AppLink>
-      </MockRouter>
+    render(
+      <ComponentToTest to={url} className={className}>
+        {text}
+      </ComponentToTest>
     );
-    let link = await screen.getByText(text);
+    let link = screen.getByText(text);
     expect(link).toBeDefined();
     expect(link).toHaveClass(className);
   });
