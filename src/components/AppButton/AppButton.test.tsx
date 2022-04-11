@@ -45,7 +45,7 @@ function testButtonColor(colorName: string, ignoreClassName = false, expectedCla
 
     let button = span.closest('button'); // parent <button> element
     expect(button).toBeDefined();
-    console.log('button.className:', button?.className);
+    // console.log('button.className:', button?.className);
     if (!ignoreClassName) {
       expect(button?.className?.includes('MuiButton-root')).toBeTruthy();
       expect(button?.className?.includes('MuiButton-contained')).toBeTruthy();
@@ -137,18 +137,17 @@ describe('AppButton component', () => {
     expect(span).toHaveClass('MuiButton-endIcon');
   });
 
-  // testButtonColor('inherit');
-  // testButtonColor('primary');
-  // testButtonColor('secondary');
-  // testButtonColor('error');
-  // testButtonColor('warning');
-  // testButtonColor('info');
-  // testButtonColor('success');
+  // MUI colors
+  testButtonColor('inherit');
+  testButtonColor('primary');
+  testButtonColor('secondary');
+  testButtonColor('error');
+  testButtonColor('warning');
+  testButtonColor('info');
+  testButtonColor('success');
 
-  // testButtonColor('true');
-  // testButtonColor('false');
-
-  // testButtonColor('default', true);
-  // testButtonColor('#f0f', true);
-  // testButtonColor('inherit',  true);
+  // Non-MUI colors
+  testButtonColor('green', true);
+  testButtonColor('#FF00FF', true);
+  testButtonColor('rgba(255, 0, 0, 0.5)', true);
 });
