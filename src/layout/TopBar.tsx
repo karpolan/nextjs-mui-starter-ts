@@ -11,6 +11,7 @@ interface Props {
 
 /**
  * Renders TopBar composition
+ * @component TopBar
  */
 const TopBar: FunctionComponent<Props> = ({ endNode, startNode, title = '', ...restOfProps }) => {
   return (

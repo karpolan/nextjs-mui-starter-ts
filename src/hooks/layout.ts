@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 /**
  * Hook to detect onMobile vs. onDesktop using "resize" event listener
- * @returns {boolean} true if onMobile, false if onDesktop
+ * @returns {boolean} true when on onMobile, false when on onDesktop
  */
 export function useOnMobileByTrackingWindowsResize() {
   const theme = useTheme();
@@ -26,7 +26,7 @@ export function useOnMobileByTrackingWindowsResize() {
 
 /**
  * Hook to detect onMobile vs. onDesktop using Media Query
- * @returns {boolean} true if onMobile, false if onDesktop
+ * @returns {boolean} true when on onMobile, false when on onDesktop
  */
 export function useOnMobileByMediaQuery() {
   const theme = useTheme();

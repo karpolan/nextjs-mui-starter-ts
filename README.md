@@ -8,9 +8,10 @@ Mix of [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) 
 ## How to use
 
 1. Clone or download the repo from: https://github.com/karpolan/nextjs-typescript-mui-starter
-2. Replace `_TITLE_` and `_DESCRIPTION_` in all files with own texts
-3. Check and resolve all `// TODO: ` directives
-4. Add your own code :)
+2. Copy `.env.sample` file into `.env` file
+3. Replace `_TITLE_` and `_DESCRIPTION_` in all files with own texts
+4. Check and resolve all `// TODO: ` directives
+5. Add your own code :)
 
 ## Available Scripts
 

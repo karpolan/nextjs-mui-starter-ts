@@ -1,4 +1,12 @@
-import React, { createContext, useReducer, useContext, FunctionComponent, PropsWithChildren } from 'react';
+import {
+  createContext,
+  useReducer,
+  useContext,
+  FunctionComponent,
+  PropsWithChildren,
+  Dispatch,
+  ComponentType,
+} from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
@@ -19,19 +27,19 @@ const INITIAL_APP_STATE: AppStoreState = {
 /**
  * Instance of React Context for global AppStore
  */
-export type AppContextReturningType = [AppStoreState, React.Dispatch<any>];
+export type AppContextReturningType = [AppStoreState, Dispatch<any>];
 const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, () => null]);
 
 /**
  * Main global Store as HOC with React Context API
- *
- * import {AppStore} from './store'
+ * @component AppStoreProvider
+ * import {AppStoreProvider} from './store'
  * ...
- * <AppStore>
+ * <AppStoreProvider>
  *  <App/>
- * </AppStore>
+ * </AppStoreProvider>
  */
-const AppStore: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
+const AppStoreProvider: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const previousDarkMode = Boolean(localStorageGet('darkMode'));
   // const tokenExists = Boolean(loadToken());
@@ -48,7 +56,7 @@ const AppStore: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
 
 /**
  * Hook to use the AppStore in functional components
- *
+ * @hook useAppStore
  * import {useAppStore} from './store'
  * ...
  * const [state, dispatch] = useAppStore();
@@ -59,7 +67,7 @@ const useAppStore = (): AppContextReturningType => useContext(AppContext);
 
 /**
  * HOC to inject the ApStore to class component, also works for functional components
- *
+ * @hok withAppStore
  * import {withAppStore} from './store'
  * ...
  * class MyComponent
@@ -75,9 +83,9 @@ interface WithAppStoreProps {
   appStore: AppContextReturningType;
 }
 const withAppStore =
-  (Component: React.ComponentType<WithAppStoreProps>): FunctionComponent =>
+  (Component: ComponentType<WithAppStoreProps>): FunctionComponent =>
   (props) => {
     return <Component {...props} appStore={useAppStore()} />;
   };
 
-export { AppStore, useAppStore, withAppStore };
+export { AppStoreProvider, useAppStore, withAppStore };

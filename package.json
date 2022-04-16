@@ -1,6 +1,6 @@
 {
   "name": "nextjs-typescript-mui-starter",
-  "version": "0.1.5",
+  "version": "0.2.7",
   "description": "NextJS + MUI starter using TypeScript",
   "author": {
     "name": "Anton Karpenko",
@@ -39,6 +39,7 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "clsx": "latest",
+    "copy-to-clipboard": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest"

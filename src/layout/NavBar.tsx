@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import React, { ChangeEvent, FunctionComponent, useCallback, useState } from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { useRouter } from 'next/router';
 import AppIcon from '../components/AppIcon';
@@ -16,7 +16,7 @@ const NavBar: FunctionComponent<Props> = ({ items }) => {
   const router = useRouter();
 
   const onNavigationChange = useCallback(
-    (event: React.ChangeEvent<{}>, newValue: string) => {
+    (event: ChangeEvent<{}>, newValue: string) => {
       router.push(newValue);
     },
     [router]
