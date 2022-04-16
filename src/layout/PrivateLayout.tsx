@@ -53,6 +53,7 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
 
 /**
  * Renders "Private Layout" composition
+ * @component PrivateLayout
  */
 const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const router = useRouter();

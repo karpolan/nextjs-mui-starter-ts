@@ -1,12 +1,12 @@
+import { FunctionComponent, MouseEventHandler } from 'react';
 import List from '@mui/material/List';
 import { LinkToPage } from '../../utils/type';
-import { FunctionComponent } from 'react';
 import SideBarNavItem from './NavItem';
 
 interface Props {
   items: Array<LinkToPage>;
   showIcons?: boolean;
-  onClick?: React.MouseEventHandler;
+  onClick?: MouseEventHandler;
 }
 
 /**

@@ -56,6 +56,7 @@ const NAVBAR_ITEMS: Array<LinkToPage> = [
 
 /**
  * Renders "Public Layout" composition
+ * @component PublicLayout
  */
 const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const onMobile = useOnMobile();
@@ -90,9 +91,9 @@ const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
           title={title}
           endNode={
             <AppIconButton
-              icon={state.darkMode ? 'day' : 'night'}
+              // icon={state.darkMode ? 'day' : 'night'} // Variant 1
+              icon="daynight" // Variant 2
               title={state.darkMode ? 'Switch to Light mode' : 'Switch to Dark mode'}
-              color="primary"
               onClick={onSwitchDarkMode}
             />
           }

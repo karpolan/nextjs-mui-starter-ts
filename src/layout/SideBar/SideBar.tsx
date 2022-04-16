@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback } from 'react';
+import { FunctionComponent, useCallback, MouseEvent } from 'react';
 import { Stack, Divider, Drawer, DrawerProps, FormControlLabel, Switch, Tooltip } from '@mui/material';
 import { AppIconButton } from '../../components';
 import { useAppStore } from '../../store/AppStore';
@@ -32,7 +32,7 @@ const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClo
   const onLogout = useEventLogout();
 
   const handleAfterLinkClick = useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
       if (variant === 'temporary' && typeof onClose === 'function') {
         onClose(event, 'backdropClick');
       }

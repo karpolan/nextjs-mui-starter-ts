@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { ComponentType, FunctionComponent } from 'react';
 // SVG assets
 import LogoIcon from './icons/LogoIcon';
 // MUI Icons
@@ -28,7 +28,7 @@ import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
  * Important: properties of ICONS object MUST be lowercase!
  * Note: You can use camelCase or UPPERCASE in the <AppIcon name="someIconByName" /> component
  */
-export const ICONS: Record<string, React.ComponentType> = {
+export const ICONS: Record<string, ComponentType> = {
   default: DefaultIcon,
   logo: LogoIcon,
   close: CloseIcon,

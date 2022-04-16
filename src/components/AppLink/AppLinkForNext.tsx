@@ -1,6 +1,6 @@
 // See: https://github.com/mui-org/material-ui/blob/6b18675c7e6204b77f4c469e113f62ee8be39178/examples/nextjs-with-typescript/src/Link.tsx
 /* eslint-disable jsx-a11y/anchor-has-content */
-import * as React from 'react';
+import { AnchorHTMLAttributes, forwardRef } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
@@ -11,7 +11,7 @@ import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../config';
  * Props for NextLinkComposed component
  */
 interface NextLinkComposedProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
+  extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
     Omit<NextLinkProps, 'href' | 'as'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
@@ -22,7 +22,7 @@ interface NextLinkComposedProps
  * NextJS composed link to use with Material UI
  * @NextLinkComposed NextLinkComposed
  */
-const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(function NextLinkComposed(
+const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(function NextLinkComposed(
   { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, ...restOfProps },
   ref
 ) {
@@ -63,7 +63,7 @@ export type AppLinkForNextProps = {
  * @param {string} [href] - external link URI
  * @param {boolean} [openInNewTab] - link will be opened in new tab when true
  */
-const AppLinkForNext = React.forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function Link(props, ref) {
+const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function Link(props, ref) {
   const {
     activeClassName = 'active',
     as: linkAs,

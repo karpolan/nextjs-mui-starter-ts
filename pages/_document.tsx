@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactElement } from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentProps } from 'next/document';
 import createEmotionCache from '../src/theme/createEmotionCache';
 import defaultThemeOptions from '../src/theme';
@@ -8,7 +8,7 @@ import { SimplePaletteColorOptions } from '@mui/material';
 const THEME_COLOR = (defaultThemeOptions.palette?.primary as SimplePaletteColorOptions)?.main || '#FFFFFF';
 
 interface Props extends DocumentProps {
-  emotionStyleTags: React.ReactElement;
+  emotionStyleTags: ReactElement;
 }
 
 /**
