@@ -67,7 +67,7 @@ const AppIconButton: FunctionComponent<Props> = ({
         {children}
       </IconButton>
     );
-  }, [color, componentToRender, children, disabled, icon, isMuiColor, sx, title, restOfProps]);
+  }, [color, componentToRender, children, disabled, icon, isMuiColor, sx, restOfProps]);
 
   // When title is set, wrap the IconButton with Tooltip.
   // Note: when IconButton is disabled the Tooltip is not working, so we don't need it

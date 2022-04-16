@@ -1,11 +1,16 @@
-import { Box, Stack, Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { ICONS } from 'src/components/AppIcon/AppIcon';
+import { Stack } from '@mui/material';
+import DemoAppAlert from 'src/components/forPages/shared/DemoAppAlerts';
 import DemoAppButton from 'src/components/forPages/shared/DemoAppButton';
+import DemoAppIcon from 'src/components/forPages/shared/DemoAppIcon';
 import DemoAppIconButton from 'src/components/forPages/shared/DemoAppIconButton';
-import { AppAlert, AppButton, AppIcon, AppIconButton } from '../src/components';
+import DemoAppImage from 'src/components/forPages/shared/DemoAppImage';
 
+/**
+ * Main page of the Application
+ * @page Home
+ */
 const Home: NextPage = () => {
   return (
     <>
@@ -14,37 +19,12 @@ const Home: NextPage = () => {
         <meta name="description" content="_DESCRIPTION_" />
       </Head>
 
-      <Stack alignItems="center">
-        <Stack>
-          <Box>
-            <Typography component="div" variant="h5">
-              AppIcon
-            </Typography>
-          </Box>
-          <Box>
-            {Object.keys(ICONS).map((icon) => (
-              <AppIcon key={icon} icon={icon} />
-            ))}
-          </Box>
-        </Stack>
-
+      <Stack alignItems="center" spacing={1}>
+        <DemoAppAlert />
         <DemoAppButton />
-
+        <DemoAppIcon />
         <DemoAppIconButton />
-
-        <Stack>
-          <Box>
-            <Typography component="div" variant="h5">
-              AppAlert
-            </Typography>
-          </Box>
-          <Box>
-            <AppAlert severity="info">AppAlert - Info</AppAlert>
-            <AppAlert severity="success">AppAlert - Info</AppAlert>
-            <AppAlert>AppAlert - Error (default)</AppAlert>
-            <AppAlert severity="warning">AppAlert - Info</AppAlert>
-          </Box>
-        </Stack>
+        <DemoAppImage />
       </Stack>
     </>
   );

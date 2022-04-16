@@ -9,7 +9,10 @@ import { AppButton } from 'src/components';
 const DemoAppButton = () => {
   return (
     <Card>
-      <CardHeader title="AppButton" />
+      <CardHeader
+        title="AppButton"
+        subheader="Pre-configured Button with lots of improvements, SVG icons specified by name, internal and external links, custom colors, etc."
+      />
       <CardContent sx={{ px: 1, py: 0 }}>
         <AppButton color="primary">primary</AppButton>
         <AppButton color="secondary">secondary</AppButton>
