@@ -12,7 +12,7 @@ import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../config';
  */
 interface NextLinkComposedProps
   extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
+    Omit<NextLinkProps, 'href' | 'as' | 'onClick' | 'onMouseEnter'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
