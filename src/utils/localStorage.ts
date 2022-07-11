@@ -3,7 +3,7 @@ import { IS_SERVER } from './NextJS';
 /**
  * Smartly reads value from localStorage
  */
-export function localStorageGet(name: string, defaultValue = ''): string {
+export function localStorageGet(name: string, defaultValue: any = ''): string {
   if (IS_SERVER) {
     return defaultValue; // We don't have access to localStorage on the server
   }

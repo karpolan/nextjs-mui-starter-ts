@@ -1,8 +1,6 @@
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import { FunctionComponent, ReactNode } from 'react';
 
-export const TOPBAR_MOBILE_HEIGHT = '56px';
-export const TOPBAR_DESKTOP_HEIGHT = '64px';
 interface Props {
   endNode?: ReactNode;
   startNode?: ReactNode;

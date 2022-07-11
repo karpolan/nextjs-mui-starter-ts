@@ -1,4 +1,8 @@
 /**
+ * Components configuration
+ */
+
+/**
  * AppAlert and AppSnackBarAlert components
  */
 export const APP_ALERT_SEVERITY = 'error'; // 'error' | 'info'| 'success' | 'warning'

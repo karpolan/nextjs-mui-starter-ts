@@ -1,7 +1,7 @@
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { useIsAuthenticated } from '../hooks';
 import PrivateLayout from './PrivateLayout';
 import PublicLayout from './PublicLayout';
+import { useIsAuthenticated } from '../hooks';
 
 /**
  * Returns the current Layout component depending on different circumstances.

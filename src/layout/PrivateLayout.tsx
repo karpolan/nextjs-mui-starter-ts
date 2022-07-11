@@ -1,32 +1,24 @@
-import { useState, useCallback, FunctionComponent } from 'react';
-import { Stack } from '@mui/material';
-import { LinkToPage } from '../utils/type';
+import { useState, useCallback, FunctionComponent, PropsWithChildren } from 'react';
 import { useRouter } from 'next/router';
-import Footer from '../components/Footer';
-import { useOnMobile } from '../hooks/layout';
-import { useAppStore } from '../store';
-import TopBar, { TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './TopBar';
-import SideBar from './SideBar';
+import { Stack } from '@mui/material';
+import { AppIconButton } from 'src/components';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { SIDEBAR_DESKTOP_ANCHOR, SIDEBAR_MOBILE_ANCHOR, SIDEBAR_WIDTH } from './SideBar/SideBar';
-import { PropsWithChildren } from 'react';
+import SideBar from './SideBar';
+import TopBar from './TopBar';
+import { LinkToPage } from '../utils/type';
+import { useOnMobile } from '../hooks/layout';
+import {
+  SIDEBAR_DESKTOP_ANCHOR,
+  SIDEBAR_MOBILE_ANCHOR,
+  SIDEBAR_WIDTH,
+  TOPBAR_DESKTOP_HEIGHT,
+  TOPBAR_MOBILE_HEIGHT,
+} from './config';
 
-const TITLE_PRIVATE = 'Private - _TITLE_'; // TODO: change to your app name or other word, schema is: `Page Title - {TITLE_PRIVATE}`
-
-/**
- * Centralized place in the App to update document.title
- */
-function updateDocumentTitle(title = '') {
-  if (title) {
-    document.title = `${title} - ${TITLE_PRIVATE}`; // TODO: Replace " - " with any other separator
-  } else {
-    document.title = TITLE_PRIVATE;
-  }
-  return document.title;
-}
+const TITLE_PRIVATE = 'Private route of _TITLE_ app'; // TODO: change to your app name or other word
 
 /**
- * Sidebar navigation items with links
+ * SideBar navigation items with links
  */
 const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
@@ -35,7 +27,7 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
     icon: 'home',
   },
   {
-    title: 'Profile',
+    title: 'Profile (404)',
     path: '/user',
     icon: 'account',
   },
@@ -58,8 +50,9 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
 const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
   const router = useRouter();
   const onMobile = useOnMobile();
-  const [state] = useAppStore();
   const [sideBarVisible, setSideBarVisible] = useState(false);
+  const shouldOpenSideBar = onMobile ? sideBarVisible : true;
+  const title = TITLE_PRIVATE;
 
   const onLogoClick = useCallback(() => {
     // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
@@ -74,21 +67,21 @@ const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =
     if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
   }, [sideBarVisible]);
 
-  const title = updateDocumentTitle();
-  const shouldOpenSideBar = onMobile ? sideBarVisible : true;
-
   return (
     <Stack
       direction="column"
       sx={{
         minHeight: '100vh', // Full screen height
         paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
-        paddingLeft: SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
-        paddingRight: SIDEBAR_DESKTOP_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
+        paddingLeft: shouldOpenSideBar && SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
+        paddingRight: shouldOpenSideBar && SIDEBAR_DESKTOP_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
       }}
     >
       <Stack component="header">
-        <TopBar title={title} />
+        <TopBar
+          startNode={<AppIconButton icon="logo" onClick={shouldOpenSideBar ? onLogoClick : onSideBarOpen} />}
+          title={title}
+        />
 
         <SideBar
           anchor={onMobile ? SIDEBAR_MOBILE_ANCHOR : SIDEBAR_DESKTOP_ANCHOR}
@@ -109,10 +102,6 @@ const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =
         }}
       >
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
-      </Stack>
-
-      <Stack component="footer">
-        <Footer />
       </Stack>
     </Stack>
   );

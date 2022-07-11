@@ -10,6 +10,7 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
+import { IS_SERVER } from 'src/utils/NextJS';
 
 /**
  * AppState data structure and initial values
@@ -40,8 +41,8 @@ const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, ()
  * </AppStoreProvider>
  */
 const AppStoreProvider: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const previousDarkMode = Boolean(localStorageGet('darkMode'));
+  const prefersDarkMode = IS_SERVER ? false : useMediaQuery('(prefers-color-scheme: dark)');
+  const previousDarkMode = IS_SERVER ? false : Boolean(localStorageGet('darkMode', false));
   // const tokenExists = Boolean(loadToken());
 
   const initialState: AppStoreState = {

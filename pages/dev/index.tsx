@@ -1,7 +1,5 @@
-import { Stack } from '@mui/material';
 import { NextPage } from 'next';
-import Footer from 'src/components/Footer';
-import Logo from 'src/components/Logo';
+import { Stack, Typography } from '@mui/material';
 import DemoAppAlert from 'src/components/forPages/shared/DemoAppAlerts';
 import DemoAppButton from 'src/components/forPages/shared/DemoAppButton';
 import DemoAppIcon from 'src/components/forPages/shared/DemoAppIcon';
@@ -16,8 +14,12 @@ const DevPage: NextPage = () => {
   if (process.env.NEXT_PUBLIC_DEBUG) return <div>Debug mode is Off</div>;
 
   return (
-    <div>
-      <Logo />
+    <Stack spacing={2} padding={2}>
+      <Stack>
+        <Typography variant="h3">DevTools page</Typography>
+        <Typography variant="body1">This page is not visible on production.</Typography>
+      </Stack>
+
       <Stack alignItems="center" spacing={1}>
         <DemoAppAlert />
         <DemoAppButton />
@@ -25,8 +27,7 @@ const DevPage: NextPage = () => {
         <DemoAppIconButton />
         <DemoAppImage />
       </Stack>
-      <Footer />
-    </div>
+    </Stack>
   );
 };
 
