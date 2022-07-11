@@ -16,6 +16,9 @@ interface Props extends PropsWithChildren<{}> {
  */
 const AppThemeProvider: FunctionComponent<Props> = ({ children, emotionCache }) => {
   const [state] = useAppStore();
+  // TODO: Make theme changes after full app loading.
+  // Maybe we need to use https://github.com/pacocoursey/next-themes npm
+  // Also take a look on this tutorial https://medium.com/@luca_79189/how-to-get-a-flickerless-persistent-dark-mode-in-your-next-js-app-example-with-mui-9581ea898314
   const theme = useMemo(() => (state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME)), [state.darkMode]);
 
   return (

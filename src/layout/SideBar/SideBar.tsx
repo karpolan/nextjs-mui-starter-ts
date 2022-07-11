@@ -4,12 +4,8 @@ import { AppIconButton } from '../../components';
 import { useAppStore } from '../../store/AppStore';
 import { LinkToPage } from '../../utils/type';
 import { useEventLogout, useEventSwitchDarkMode, useOnMobile } from '../../hooks';
-import SideBarNavList from './NavList';
-import { TOPBAR_DESKTOP_HEIGHT } from '../TopBar';
-
-export const SIDEBAR_MOBILE_ANCHOR = 'left'; // 'right';
-export const SIDEBAR_DESKTOP_ANCHOR = 'left'; // 'right';
-export const SIDEBAR_WIDTH = 240; // 240px
+import SideBarNavList from './SideBarNavList';
+import { SIDEBAR_WIDTH, TOPBAR_DESKTOP_HEIGHT } from '../config';
 
 interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'variant' | 'onClose'> {
   items: Array<LinkToPage>;
@@ -18,11 +14,11 @@ interface Props extends Pick<DrawerProps, 'anchor' | 'className' | 'open' | 'var
 /**
  * Renders SideBar with Menu and User details
  * Actually for Authenticated users only, rendered in "Private Layout"
- * @class SideBar
+ * @component SideBar
  * @param {string} anchor - 'left' or 'right'
  * @param {boolean} open - the Drawer is visible when true
  * @param {string} variant - variant of the Drawer, one of 'permanent', 'persistent', 'temporary'
- * @param {func} onClose - called when the Drawer is closing
+ * @param {function} onClose - called when the Drawer is closing
  */
 const SideBar: FunctionComponent<Props> = ({ anchor, open, variant, items, onClose, ...restOfProps }) => {
   const [state] = useAppStore();

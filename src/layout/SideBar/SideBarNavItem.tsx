@@ -1,8 +1,8 @@
 import { FunctionComponent, MouseEventHandler } from 'react';
 import { useRouter } from 'next/router';
-import { LinkToPage } from '../../utils/type';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { AppIcon, AppLink } from '../../components';
+import { LinkToPage } from '../../utils/type';
 
 interface Props extends LinkToPage {
   openInNewTab?: boolean;

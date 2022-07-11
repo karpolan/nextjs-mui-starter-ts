@@ -1,19 +1,19 @@
 import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
 import { Stack } from '@mui/material/';
-import NavBar from './NavBar';
-import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
-import TopBar, { TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './TopBar';
+import { AppIconButton } from '../components';
+import BottomBar from './BottomBar';
+import ErrorBoundary from '../components/ErrorBoundary';
+import SideBar from './SideBar';
+import TopBar from './TopBar';
 import { LinkToPage } from '../utils/type';
 import { useAppStore } from '../store';
-import { AppIconButton } from '../components';
-import SideBar from './SideBar';
-import ErrorBoundary from '../components/ErrorBoundary';
-import { IS_SERVER } from '../utils/NextJS';
+import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
+import { BOTTOMBAR_DESKTOP_VISIBLE, TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './config';
 
-const TITLE_PUBLIC = '_TITLE_'; // TODO: change to your app name or other word
+const TITLE_PUBLIC = 'Public route of _TITLE_ app'; // TODO: change to your app name or other word
 
 /**
- * Sidebar navigation items with links
+ * SideBar navigation items with links
  */
 const SIDEBAR_ITEMS: Array<LinkToPage> = [
   {
@@ -34,9 +34,9 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
 ];
 
 /**
- * Bottom Navigation links
+ * BottomBar navigation items with links
  */
-const NAVBAR_ITEMS: Array<LinkToPage> = [
+const BOTTOMBAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -62,11 +62,8 @@ const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
   const onMobile = useOnMobile();
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const [state] = useAppStore();
-
+  const bottomBarVisible = onMobile || BOTTOMBAR_DESKTOP_VISIBLE;
   const title = TITLE_PUBLIC;
-  if (!IS_SERVER) {
-    document.title = title; // Also Update Tab/Document Title
-  }
 
   const onSwitchDarkMode = useEventSwitchDarkMode();
 
@@ -118,9 +115,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
       </Stack>
 
-      <Stack component="footer">
-        <NavBar items={NAVBAR_ITEMS} />
-      </Stack>
+      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOMBAR_ITEMS} />}</Stack>
     </Stack>
   );
 };
