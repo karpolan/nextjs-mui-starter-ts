@@ -3,7 +3,7 @@ import { IS_SERVER } from './NextJS';
 /**
  * Smartly reads value from sessionStorage
  */
-export function sessionStorageGet(name: string, defaultValue = ''): string {
+export function sessionStorageGet(name: string, defaultValue: any = ''): string {
   if (IS_SERVER) {
     return defaultValue; // We don't have access to sessionStorage on the server
   }

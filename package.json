@@ -55,6 +55,7 @@
     "eslint-config-next": "latest",
     "eslint-plugin-testing-library": "latest",
     "jest": "latest",
+    "jest-environment-jsdom": "^28.1.2",
     "prettier": "latest",
     "typescript": "latest"
   }

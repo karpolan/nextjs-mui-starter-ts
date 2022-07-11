@@ -20,6 +20,7 @@ const DemoAppImage = () => {
             title="Blurred placeholder, for loading or missing files"
             placeholder="blur"
             blurDataURL="/img/favicon/32x32.png"
+            // src="https://karpolan.com/me.jpg"
             src="/img/bad-file-name.svg"
           />
           <AppImage width={128} height={128} title="32x32 image scaled to 128x128" src="/img/favicon/32x32.png" />

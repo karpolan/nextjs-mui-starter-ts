@@ -1,4 +1,4 @@
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import { FunctionComponent } from 'react';
 import createCache, { EmotionCache } from '@emotion/cache';
 import { AppThemeProvider } from '../src/theme';

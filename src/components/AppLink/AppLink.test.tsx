@@ -11,7 +11,7 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 const router: NextRouter = createRouter('', {}, '', {
   subscription: jest.fn().mockImplementation(Promise.resolve),
   initialProps: {},
-  pageLoader: jest.fn(),
+  pageLoader: { getMiddlewareList: jest.fn() }, // jest.fn(),
   Component: jest.fn(),
   App: jest.fn(),
   wrapApp: jest.fn(),
