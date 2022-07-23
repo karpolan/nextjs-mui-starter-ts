@@ -4,6 +4,8 @@ import { Stack } from '@mui/material';
 import { AppButton } from 'src/components';
 import { useAppStore } from 'src/store';
 import { useRouter } from 'next/router';
+import { useEventLogout } from 'src/hooks';
+import { sessionStorageSet } from 'src/utils/sessionStorage';
 
 /**
  * User Login page
@@ -12,14 +14,13 @@ import { useRouter } from 'next/router';
 const Login: NextPage = () => {
   const router = useRouter();
   const [, dispatch] = useAppStore();
+  const onLogout = useEventLogout();
 
-  const emulateLogin = () => {
+  const onLogin = () => {
+    // TODO: AUTH: Sample of access token store, replace next line in real application
+    sessionStorageSet('access_token', 'save-real-access-token-here');
+
     dispatch({ type: 'LOG_IN' });
-    router.push('/');
-  };
-
-  const emulateLogout = () => {
-    dispatch({ type: 'LOG_OUT' });
     router.push('/');
   };
 
@@ -33,10 +34,10 @@ const Login: NextPage = () => {
         <Stack>Put form controls or add social login buttons here...</Stack>
 
         <Stack direction="row">
-          <AppButton color="success" onClick={emulateLogin}>
+          <AppButton color="success" onClick={onLogin}>
             Emulate User Login
           </AppButton>
-          <AppButton color="warning" onClick={emulateLogout}>
+          <AppButton color="warning" onClick={onLogout}>
             Logout User
           </AppButton>
         </Stack>

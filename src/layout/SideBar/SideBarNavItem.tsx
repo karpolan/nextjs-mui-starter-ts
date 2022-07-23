@@ -27,7 +27,14 @@ const SideBarNavItem: FunctionComponent<Props> = ({
   const selected = propSelected || (path && router.pathname.startsWith(path)) || false;
 
   return (
-    <ListItemButton component={AppLink} openInNewTab={openInNewTab} selected={selected} to={path} onClick={onClick}>
+    <ListItemButton
+      component={AppLink}
+      selected={selected}
+      to={path}
+      href="" // Hard reset for .href property, otherwise links are always opened in new tab :(
+      openInNewTab={openInNewTab}
+      onClick={onClick}
+    >
       <ListItemIcon>{icon && <AppIcon icon={icon} />}</ListItemIcon>
       <ListItemText primary={title} secondary={subtitle} />
     </ListItemButton>

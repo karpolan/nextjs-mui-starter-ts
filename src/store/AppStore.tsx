@@ -10,7 +10,7 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
-import { IS_SERVER } from 'src/utils/NextJS';
+import { IS_SERVER } from '../utils/NextJS';
 
 /**
  * AppState data structure and initial values
