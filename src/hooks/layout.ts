@@ -11,7 +11,7 @@ export function useOnMobileByTrackingWindowsResize() {
 
   const handleResize = useCallback(() => {
     setOnMobile(window.innerWidth < theme.breakpoints.values.sm); // sx, sm are "onMobile"
-  }, []);
+  }, [theme.breakpoints.values.sm]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize); // Set resize listener

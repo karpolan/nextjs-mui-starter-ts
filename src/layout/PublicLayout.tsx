@@ -10,7 +10,8 @@ import { useAppStore } from '../store';
 import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
 import { BOTTOMBAR_DESKTOP_VISIBLE, TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './config';
 
-const TITLE_PUBLIC = 'Public route of _TITLE_ app'; // TODO: change to your app name or other word
+// TODO: change to your app name or other word
+const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentication
 
 /**
  * SideBar navigation items with links
