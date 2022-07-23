@@ -85,7 +85,7 @@ interface WithAppStoreProps {
   appStore: AppContextReturningType;
 }
 const withAppStore = (Component: ComponentType<WithAppStoreProps>): FunctionComponent =>
-  function hocAppStore(props) {
+  function ComponentWithAppStore(props) {
     return <Component {...props} appStore={useAppStore()} />;
   };
 
