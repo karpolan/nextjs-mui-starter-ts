@@ -28,6 +28,7 @@ const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(fu
 ) {
   return (
     <NextLink
+      legacyBehavior={true} // TODO: Remove when MUI become compatible with NextJs 13+
       href={to}
       prefetch={prefetch}
       as={linkAs}
