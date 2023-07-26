@@ -42,18 +42,16 @@ const AppIconButton: FunctionComponent<Props> = ({
 
   const isMuiColor = useMemo(() => MUI_ICON_BUTTON_COLORS.includes(color), [color]);
 
-  const IconButtonToRender = useMemo(() => {
+  const iconButtonToRender = useMemo(() => {
     const colorToRender = isMuiColor ? (color as IconButtonProps['color']) : 'default';
     const sxToRender = {
       ...sx,
-      ...(isMuiColor
-        ? {}
-        : {
-            color: color,
-            ':hover': {
-              backgroundColor: alpha(color, 0.04),
-            },
-          }),
+      ...(!isMuiColor && {
+        color: color,
+        ':hover': {
+          backgroundColor: alpha(color, 0.04),
+        },
+      }),
     };
     return (
       <IconButton
@@ -71,7 +69,7 @@ const AppIconButton: FunctionComponent<Props> = ({
 
   // When title is set, wrap the IconButton with Tooltip.
   // Note: when IconButton is disabled the Tooltip is not working, so we don't need it
-  return title && !disabled ? <Tooltip title={title}>{IconButtonToRender}</Tooltip> : IconButtonToRender;
+  return title && !disabled ? <Tooltip title={title}>{iconButtonToRender}</Tooltip> : iconButtonToRender;
 };
 
 export default AppIconButton;

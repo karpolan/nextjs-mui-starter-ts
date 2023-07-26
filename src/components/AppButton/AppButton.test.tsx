@@ -54,7 +54,7 @@ function testButtonColor(colorName: string, ignoreClassName = false, expectedCla
   });
 }
 
-describe('AppButton component', () => {
+describe('<AppButton/> component', () => {
   //   beforeEach(() => {});
 
   it('renders itself', () => {

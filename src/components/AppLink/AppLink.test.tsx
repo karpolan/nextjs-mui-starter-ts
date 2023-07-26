@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { render, screen } from '@testing-library/react';
 import AppLink, { AppLinkProp } from './';
 import mockRouter from 'next-router-mock';
+import { randomColor } from '../../utils';
 /* IMPORTANT! To get 'next/router' working with tests, add into "jest.setup.js" file following:
 ---
 jest.mock('next/router', () => require('next-router-mock')); 
@@ -26,7 +27,7 @@ const ComponentToTest: FunctionComponent<AppLinkProp> = (props) => (
 /**
  * Tests for <AppLink/> component
  */
-describe('AppLink component', () => {
+describe('<AppLink/> component', () => {
   it('renders itself', () => {
     const text = 'sample text';
     const url = 'https://example.com/';
@@ -178,7 +179,7 @@ describe('AppLink component', () => {
     for (let i = 1; i < 5; i++) {
       let text = `link #${i} with .color property`;
       let url = '/internal-link-with-color';
-      let color = '#' + Math.floor(Math.random() * 16777215).toString(16); // Random color
+      let color = randomColor();
       render(
         <ComponentToTest to={url} color={color}>
           {text}
