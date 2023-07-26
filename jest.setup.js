@@ -5,5 +5,8 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect';
 
+// To get 'next/router' working with tests
+jest.mock('next/router', () => require('next-router-mock'));
+
 // @ts-expect-error
-self.__NEXT_DATA__ = {};
+// self.__NEXT_DATA__ = {};
