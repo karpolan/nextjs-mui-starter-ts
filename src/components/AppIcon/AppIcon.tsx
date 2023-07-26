@@ -24,9 +24,9 @@ import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
  * How to use:
  * 1. Import all required MUI or other SVG icons into this file.
  * 2. Add icons with "unique lowercase names" into ICONS object.
- * 3. Use icons everywhere in the App by their names in <AppIcon name="xxx" /> component
+ * 3. Use icons everywhere in the App by their names in <AppIcon icon="xxx" /> component
  * Important: properties of ICONS object MUST be lowercase!
- * Note: You can use camelCase or UPPERCASE in the <AppIcon name="someIconByName" /> component
+ * Note: You can use camelCase or UPPERCASE in the <AppIcon icon="someIconByName" /> component
  */
 export const ICONS: Record<string, ComponentType> = {
   default: DefaultIcon,
