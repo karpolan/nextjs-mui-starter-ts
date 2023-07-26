@@ -58,8 +58,12 @@ interface Props {
  * @param {string} [icon] - name of the Icon to render
  */
 const AppIcon: FunctionComponent<Props> = ({ icon = 'default', ...restOfProps }) => {
-  const iconName = icon.trim().toLowerCase();
-  const ComponentToRender = ICONS[iconName] || DefaultIcon;
+  const iconName = (icon || 'default').trim().toLowerCase();
+  let ComponentToRender = ICONS[iconName];
+  if (!ComponentToRender) {
+    console.warn(`AppIcon: icon "${iconName}" is not found!`);
+    ComponentToRender = DefaultIcon;
+  }
   return <ComponentToRender {...restOfProps} />;
 };
 
