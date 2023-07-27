@@ -1,4 +1,4 @@
-# NextJs + MUI starter project using TypeScript
+# Next.js + MUI starter project using TypeScript
 
 Mix of [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) and [MUI](https://mui.com) with set of reusable components and utilities to build professional NextJS application faster.
 
@@ -17,7 +17,7 @@ Mix of [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) 
 
 In the project directory, you can run:
 
-### `yarn dev` or `npm run dev`
+### `npm run dev` or `yarn dev`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -25,23 +25,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn lint` or `npm run lint`
+### `npm run lint` or `yarn lint`
 
 Checks the code for errors and missing things
 
-### `yarn format` or `npm run format`
+### `npm run format` or `yarn format`
 
 Formats the code according to `./prettierrc.js` config
 
-### `yarn test` or `npm test`
+### `npm test` or `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
 
-### `yarn build` or `npm run build`
+### `npm run build` or `yarn build`
 
 Builds the app for production or local development to the `.next` folder.<br />
 
 ### `yarn build:static` or `npm run build:static`
+
+_Note: this is deprecated way to build the app!_
 
 Builds the SSG (static site generator) version of the app in the `out` folder.<br />
 

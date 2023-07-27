@@ -1,7 +1,7 @@
 {
   "name": "nextjs-typescript-mui-starter",
-  "version": "0.3.15",
-  "description": "NextJS + MUI starter using TypeScript",
+  "version": "0.3.17",
+  "description": "Next.js + MUI starter using TypeScript",
   "author": {
     "name": "Anton Karpenko",
     "email": "i@karpolan.com",
