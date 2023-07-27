@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AppAlert, { MUI_ALERT_SEVERITIES } from './AppAlert';
+import AppAlert from './AppAlert';
 import { capitalize, randomText } from '../../utils';
 import { AlertProps } from '@mui/material';
 
@@ -19,7 +19,8 @@ describe('<AppAlert/> component', () => {
   });
 
   it('supports .severity property', () => {
-    for (const severity of MUI_ALERT_SEVERITIES) {
+    const SEVERITIES = ['error', 'info', 'success', 'warning'];
+    for (const severity of SEVERITIES) {
       const testId = randomText(8);
       const severity = 'success';
       render(
