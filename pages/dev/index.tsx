@@ -11,7 +11,7 @@ import DemoAppImage from 'src/components/forPages/shared/DemoAppImage';
  * @page DevPage
  */
 const DevPage: NextPage = () => {
-  if (!process.env.NEXT_PUBLIC_DEBUG) return;
+  if (!process.env.NEXT_PUBLIC_DEBUG) return null; // Hide this page on production
 
   return (
     <Stack spacing={2} padding={2}>
