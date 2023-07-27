@@ -5,9 +5,9 @@ import { useIsAuthenticated } from '../hooks';
 
 /**
  * Returns the current Layout component depending on different circumstances.
- * @component CurrentLayout
+ * @layout CurrentLayout
  */
-const CurrentLayout: FunctionComponent<PropsWithChildren<{}>> = (props) => {
+const CurrentLayout: FunctionComponent<PropsWithChildren> = (props) => {
   return useIsAuthenticated() ? <PrivateLayout {...props} /> : <PublicLayout {...props} />;
 };
 

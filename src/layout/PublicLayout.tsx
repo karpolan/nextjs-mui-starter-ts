@@ -16,7 +16,7 @@ const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentica
 /**
  * SideBar navigation items with links
  */
-const SIDEBAR_ITEMS: Array<LinkToPage> = [
+const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -34,10 +34,18 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
   },
 ];
 
+if (process.env.NEXT_PUBLIC_DEBUG) {
+  SIDE_BAR_ITEMS.push({
+    title: '[Debug Tools]',
+    path: '/dev',
+    icon: 'settings',
+  });
+}
+
 /**
  * BottomBar navigation items with links
  */
-const BOTTOMBAR_ITEMS: Array<LinkToPage> = [
+const BOTTOM_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Log In',
     path: '/auth/login',
@@ -57,9 +65,9 @@ const BOTTOMBAR_ITEMS: Array<LinkToPage> = [
 
 /**
  * Renders "Public Layout" composition
- * @component PublicLayout
+ * @layout PublicLayout
  */
-const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
+const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const onMobile = useOnMobile();
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const [state] = useAppStore();
@@ -101,7 +109,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
           anchor="left"
           open={sideBarVisible}
           variant="temporary"
-          items={SIDEBAR_ITEMS}
+          items={SIDE_BAR_ITEMS}
           onClose={onSideBarClose}
         />
       </Stack>
@@ -116,7 +124,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
         <ErrorBoundary name="Content">{children}</ErrorBoundary>
       </Stack>
 
-      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOMBAR_ITEMS} />}</Stack>
+      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOM_BAR_ITEMS} />}</Stack>
     </Stack>
   );
 };

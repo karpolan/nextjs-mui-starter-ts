@@ -12,9 +12,13 @@ const DemoAppButton = () => {
       <CardHeader title="AppAlert" subheader="Pre-configured Alert" />
       <CardContent sx={{ py: 0 }}>
         <AppAlert severity="info">AppAlert - Info</AppAlert>
-        <AppAlert severity="success">AppAlert - Info</AppAlert>
+        <AppAlert severity="success" variant="outlined">
+          AppAlert - Info, variant "outlined"
+        </AppAlert>
         <AppAlert>AppAlert - Error (default)</AppAlert>
-        <AppAlert severity="warning">AppAlert - Info</AppAlert>
+        <AppAlert severity="warning" variant="standard">
+          AppAlert - Info, variant "standard"
+        </AppAlert>
       </CardContent>
     </Card>
   );

@@ -9,7 +9,7 @@ function getThemeByDarkMode(darkMode: boolean) {
   return darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
 }
 
-interface Props extends PropsWithChildren<{}> {
+interface Props extends PropsWithChildren {
   emotionCache: EmotionCache; // You can omit it if you don't want to use Emotion styling library
 }
 

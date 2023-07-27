@@ -2,8 +2,11 @@ import MuiAlert, { AlertProps as MuiAlertProps } from '@mui/material/Alert';
 import { FunctionComponent } from 'react';
 import { APP_ALERT_SEVERITY, APP_ALERT_VARIANT } from '../config';
 
+export const MUI_ALERT_SEVERITIES = ['error', 'info', 'success', 'warning'];
+
 /**
  * Application styled Alert component
+ * @component AppAlert
  */
 const AppAlert: FunctionComponent<MuiAlertProps> = ({
   severity = APP_ALERT_SEVERITY,
