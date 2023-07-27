@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import AppIcon from './AppIcon';
+import AppIcon, { ICONS } from './AppIcon';
 import { ICON_SIZE } from '../config';
 import { randomColor, randomText } from '../../utils';
 
@@ -32,11 +32,14 @@ describe('<AppIcon/> component', () => {
   });
 
   it('supports .icon property', () => {
-    const testId = randomText(8);
-    const iconName = 'close'; // Name must exist in const ICONS
-    render(<ComponentToTest data-testid={testId} icon={iconName} />);
-    const svg = screen.getByTestId(testId);
-    expect(svg).toHaveAttribute('data-icon', iconName.toLowerCase());
+    // Verify that all icons are supported
+    for (const icon of Object.keys(ICONS)) {
+      const testId = randomText(8);
+      render(<ComponentToTest data-testid={testId} icon={icon} />);
+      const svg = screen.getByTestId(testId);
+      expect(svg).toBeDefined();
+      expect(svg).toHaveAttribute('data-icon', icon.toLowerCase());
+    }
   });
 
   it('supports .size property', () => {

@@ -4,10 +4,7 @@ import createCache from '@emotion/cache';
 import { AppThemeProvider } from '../../theme';
 import AppButton, { AppButtonProps } from './AppButton';
 import DefaultIcon from '@mui/icons-material/MoreHoriz';
-
-function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { capitalize } from '@mui/material/utils';
 
 function createEmotionCache() {
   return createCache({ key: 'css', prepend: true });
