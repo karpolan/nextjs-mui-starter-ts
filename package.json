@@ -1,6 +1,6 @@
 {
   "name": "nextjs-typescript-mui-starter",
-  "version": "0.2.13",
+  "version": "0.3.15",
   "description": "NextJS + MUI starter using TypeScript",
   "author": {
     "name": "Anton Karpenko",
@@ -24,7 +24,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:static": "next build && next export",
-    "format": "node_modules/.bin/prettier ./ --write",
+    "format": "prettier ./ --write",
     "lint": "next lint",
     "start": "next start",
     "test": "jest --watch",
@@ -56,6 +56,7 @@
     "eslint-plugin-testing-library": "latest",
     "jest": "latest",
     "jest-environment-jsdom": "latest",
+    "next-router-mock": "latest",
     "prettier": "latest",
     "typescript": "latest"
   }

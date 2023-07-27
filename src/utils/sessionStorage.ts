@@ -1,4 +1,4 @@
-import { IS_SERVER } from './NextJS';
+import { IS_SERVER } from './environment';
 
 /**
  * Smartly reads value from sessionStorage

@@ -4,6 +4,7 @@ import { APP_ALERT_SEVERITY, APP_ALERT_VARIANT } from '../config';
 
 /**
  * Application styled Alert component
+ * @component AppAlert
  */
 const AppAlert: FunctionComponent<MuiAlertProps> = ({
   severity = APP_ALERT_SEVERITY,

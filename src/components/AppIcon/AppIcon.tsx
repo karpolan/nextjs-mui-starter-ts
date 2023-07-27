@@ -1,4 +1,5 @@
-import { ComponentType, FunctionComponent } from 'react';
+import { ComponentType, FunctionComponent, SVGAttributes } from 'react';
+import { ICON_SIZE } from '../config';
 // SVG assets
 import LogoIcon from './icons/LogoIcon';
 // MUI Icons
@@ -24,9 +25,9 @@ import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
  * How to use:
  * 1. Import all required MUI or other SVG icons into this file.
  * 2. Add icons with "unique lowercase names" into ICONS object.
- * 3. Use icons everywhere in the App by their names in <AppIcon name="xxx" /> component
+ * 3. Use icons everywhere in the App by their names in <AppIcon icon="xxx" /> component
  * Important: properties of ICONS object MUST be lowercase!
- * Note: You can use camelCase or UPPERCASE in the <AppIcon name="someIconByName" /> component
+ * Note: You can use camelCase or UPPERCASE in the <AppIcon icon="someIconByName" /> component
  */
 export const ICONS: Record<string, ComponentType> = {
   default: DefaultIcon,
@@ -49,18 +50,47 @@ export const ICONS: Record<string, ComponentType> = {
   notifications: NotificationsIcon,
 };
 
-interface Props {
+export interface AppIconProps extends SVGAttributes<SVGElement> {
+  color?: string;
   icon?: string;
+  size?: string | number;
+  title?: string;
 }
 
 /**
  * Renders SVG icon by given Icon name
+ * @component AppIcon
+ * @param {string} [color] - color of the icon as a CSS color value
  * @param {string} [icon] - name of the Icon to render
+ * @param {string} [title] - title/hint to show when the cursor hovers the icon
+ * @param {string | number} [size] - size of the icon, default is ICON_SIZE
  */
-const AppIcon: FunctionComponent<Props> = ({ icon = 'default', ...restOfProps }) => {
-  const iconName = icon.trim().toLowerCase();
-  const ComponentToRender = ICONS[iconName] || DefaultIcon;
-  return <ComponentToRender {...restOfProps} />;
+const AppIcon: FunctionComponent<AppIconProps> = ({
+  color,
+  icon = 'default',
+  size = ICON_SIZE,
+  style,
+  ...restOfProps
+}) => {
+  const iconName = (icon || 'default').trim().toLowerCase();
+
+  let ComponentToRender = ICONS[iconName];
+  if (!ComponentToRender) {
+    console.warn(`AppIcon: icon "${iconName}" is not found!`);
+    ComponentToRender = DefaultIcon;
+  }
+
+  const propsToRender = {
+    height: size,
+    color,
+    fill: color && 'currentColor',
+    size,
+    style: { ...style, color },
+    width: size,
+    ...restOfProps,
+  };
+
+  return <ComponentToRender data-icon={iconName} {...propsToRender} />;
 };
 
 export default AppIcon;

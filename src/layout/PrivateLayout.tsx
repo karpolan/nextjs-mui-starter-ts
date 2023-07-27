@@ -21,7 +21,7 @@ const TITLE_PRIVATE = '_TITLE_ app'; // Title for pages after authentication
 /**
  * SideBar navigation items with links
  */
-const SIDEBAR_ITEMS: Array<LinkToPage> = [
+const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'Home',
     path: '/',
@@ -37,18 +37,21 @@ const SIDEBAR_ITEMS: Array<LinkToPage> = [
     path: '/about',
     icon: 'info',
   },
-  {
-    title: 'Dev Tools',
+];
+
+if (process.env.NEXT_PUBLIC_DEBUG) {
+  SIDE_BAR_ITEMS.push({
+    title: '[Debug Tools]',
     path: '/dev',
     icon: 'settings',
-  },
-];
+  });
+}
 
 /**
  * Renders "Private Layout" composition
- * @component PrivateLayout
+ * @layout PrivateLayout
  */
-const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
+const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
   const onMobile = useOnMobile();
   const [sideBarVisible, setSideBarVisible] = useState(false);
@@ -57,7 +60,7 @@ const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =
 
   const onLogoClick = useCallback(() => {
     // Navigate to first SideBar's item or to '/' when clicking on Logo/Menu icon when SideBar is already visible
-    router.push(SIDEBAR_ITEMS?.[0]?.path || '/');
+    router.push(SIDE_BAR_ITEMS?.[0]?.path || '/');
   }, [router]);
 
   const onSideBarOpen = useCallback(() => {
@@ -88,7 +91,7 @@ const PrivateLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =
           anchor={onMobile ? SIDEBAR_MOBILE_ANCHOR : SIDEBAR_DESKTOP_ANCHOR}
           open={shouldOpenSideBar}
           variant={onMobile ? 'temporary' : 'persistent'}
-          items={SIDEBAR_ITEMS}
+          items={SIDE_BAR_ITEMS}
           onClose={onSideBarClose}
         />
       </Stack>

@@ -10,7 +10,7 @@ import {
 // import useMediaQuery from '@mui/material/useMediaQuery';
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
-import { IS_SERVER } from '../utils/NextJS';
+import { IS_SERVER } from '../utils/environment';
 
 /**
  * AppState data structure and initial values
@@ -40,7 +40,7 @@ const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, ()
  *  <App/>
  * </AppStoreProvider>
  */
-const AppStoreProvider: FunctionComponent<PropsWithChildren<{}>> = ({ children }) => {
+const AppStoreProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   // const prefersDarkMode = IS_SERVER ? false : useMediaQuery('(prefers-color-scheme: dark)'); // Note: Conditional hook is bad idea :(
   const prefersDarkMode = IS_SERVER ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
   const previousDarkMode = IS_SERVER ? false : Boolean(localStorageGet('darkMode', false));

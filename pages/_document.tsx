@@ -14,6 +14,7 @@ interface Props extends DocumentProps {
 /**
  * Extended Document class to support MUI and Emotion styling
  * See also: https://github.com/mui/material-ui/blob/master/examples/nextjs/pages/_document.js
+ * @component AppDocument
  */
 class AppDocument extends Document<Props> {
   render() {
