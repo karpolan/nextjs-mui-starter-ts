@@ -1,14 +1,10 @@
 import { FunctionComponent } from 'react';
 import { render, screen, within } from '@testing-library/react';
-import createCache from '@emotion/cache';
 import { AppThemeProvider } from '../../theme';
+import createEmotionCache from '../../theme/createEmotionCache';
 import AppButton, { AppButtonProps } from './AppButton';
 import DefaultIcon from '@mui/icons-material/MoreHoriz';
 import { capitalize } from '@mui/material/utils';
-
-function createEmotionCache() {
-  return createCache({ key: 'css', prepend: true });
-}
 
 /**
  * AppButton wrapped with Theme Provider
