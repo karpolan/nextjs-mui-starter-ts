@@ -11,8 +11,8 @@ import {
   SIDEBAR_DESKTOP_ANCHOR,
   SIDEBAR_MOBILE_ANCHOR,
   SIDEBAR_WIDTH,
-  TOPBAR_DESKTOP_HEIGHT,
-  TOPBAR_MOBILE_HEIGHT,
+  TOP_BAR_DESKTOP_HEIGHT,
+  TOP_BAR_MOBILE_HEIGHT,
 } from './config';
 
 // TODO: change to your app name or other word
@@ -76,7 +76,7 @@ const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
       direction="column"
       sx={{
         minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
+        paddingTop: onMobile ? TOP_BAR_MOBILE_HEIGHT : TOP_BAR_DESKTOP_HEIGHT,
         paddingLeft: shouldOpenSideBar && SIDEBAR_DESKTOP_ANCHOR.includes('left') ? SIDEBAR_WIDTH : 0,
         paddingRight: shouldOpenSideBar && SIDEBAR_DESKTOP_ANCHOR.includes('right') ? SIDEBAR_WIDTH : 0,
       }}

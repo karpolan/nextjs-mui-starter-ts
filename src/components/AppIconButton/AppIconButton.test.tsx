@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import AppIconButton, { MUI_ICON_BUTTON_COLORS } from './AppIconButton';
-import { ICON_SIZE } from '../config';
+import { AP_ICON_SIZE } from '../config';
 import { ObjectPropByName, capitalize, randomColor, randomText } from '../../utils';
 import { ICONS } from '../AppIcon/AppIcon';
 
@@ -35,9 +35,9 @@ describe('<AppIconButton/> component', () => {
     const svg = button.querySelector('svg');
     expect(svg).toBeDefined();
     expect(svg).toHaveAttribute('data-icon', 'default'); // default icon
-    expect(svg).toHaveAttribute('size', String(ICON_SIZE)); // default size
-    expect(svg).toHaveAttribute('height', String(ICON_SIZE)); // default size when .size is not set
-    expect(svg).toHaveAttribute('width', String(ICON_SIZE)); // default size when .size is not se
+    expect(svg).toHaveAttribute('size', String(AP_ICON_SIZE)); // default size
+    expect(svg).toHaveAttribute('height', String(AP_ICON_SIZE)); // default size when .size is not set
+    expect(svg).toHaveAttribute('width', String(AP_ICON_SIZE)); // default size when .size is not se
   });
 
   it('supports .color property', () => {

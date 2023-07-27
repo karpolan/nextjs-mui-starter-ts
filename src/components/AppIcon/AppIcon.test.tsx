@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import AppIcon, { ICONS } from './AppIcon';
-import { ICON_SIZE } from '../config';
+import { AP_ICON_SIZE } from '../config';
 import { randomColor, randomText } from '../../utils';
 
 const ComponentToTest = AppIcon;
@@ -15,9 +15,9 @@ describe('<AppIcon/> component', () => {
     const svg = screen.getByTestId(testId);
     expect(svg).toBeDefined();
     expect(svg).toHaveAttribute('data-icon', 'default');
-    expect(svg).toHaveAttribute('size', String(ICON_SIZE)); // default size
-    expect(svg).toHaveAttribute('height', String(ICON_SIZE)); // default size when .size is not set
-    expect(svg).toHaveAttribute('width', String(ICON_SIZE)); // default size when .size is not se
+    expect(svg).toHaveAttribute('size', String(AP_ICON_SIZE)); // default size
+    expect(svg).toHaveAttribute('height', String(AP_ICON_SIZE)); // default size when .size is not set
+    expect(svg).toHaveAttribute('width', String(AP_ICON_SIZE)); // default size when .size is not se
   });
 
   it('supports .color property', () => {
