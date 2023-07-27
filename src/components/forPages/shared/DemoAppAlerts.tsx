@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader } from '@mui/material';
-import React from 'react';
 import { AppAlert } from 'src/components';
 
 /**
@@ -13,11 +12,11 @@ const DemoAppButton = () => {
       <CardContent sx={{ py: 0 }}>
         <AppAlert severity="info">AppAlert - Info</AppAlert>
         <AppAlert severity="success" variant="outlined">
-          AppAlert - Info, variant "outlined"
+          AppAlert - Info, variant &quot;outlined&quot;
         </AppAlert>
         <AppAlert>AppAlert - Error (default)</AppAlert>
         <AppAlert severity="warning" variant="standard">
-          AppAlert - Info, variant "standard"
+          AppAlert - Info, variant &quot;standard&quot;
         </AppAlert>
       </CardContent>
     </Card>
