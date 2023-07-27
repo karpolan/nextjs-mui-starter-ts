@@ -43,7 +43,11 @@ const DemoAppIconButton = () => {
             title="Small icon with Custom color as External link"
           />
           <AppIconButton icon="menu" color="primary" size="small" title="Small Menu icon with Primary color" />
-          <AppIconButton color="primary" title="Default icon with Primary color" />
+          <AppIconButton
+            color="primary"
+            title="Default icon with Primary color and Arrow tooltip"
+            tooltipProps={{ arrow: true }}
+          />
         </Box>
       </CardContent>
     </Card>

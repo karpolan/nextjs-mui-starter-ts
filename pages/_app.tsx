@@ -21,6 +21,7 @@ export interface MainAppProps extends AppProps {
 /**
  * Main application component.
  * Injects the theme provider and the Emotion styling cache.
+ * @component MainApp
  */
 const MainApp: FunctionComponent<MainAppProps> = ({
   Component,

@@ -7,6 +7,11 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../config';
 
+export const EXTERNAL_LINK_PROPS = {
+  target: '_blank',
+  rel: 'noopener noreferrer',
+};
+
 /**
  * Props for NextLinkComposed component
  */
@@ -59,19 +64,25 @@ export type AppLinkForNextProps = {
  * Material UI link for NextJS
  * A styled version of the Next.js Link component: https://nextjs.org/docs/#with-link
  * @component AppLinkForNext
+ * @param {string} [activeClassName] - class name for active link, applied when the router.pathname matches .href or .to props
+ * @param {string} [as] - passed to NextJS Link component in .as prop
+ * @param {string} [className] - class name for <a> tag or NextJS Link component
  * @param {object|function} children - content to wrap with <a> tag
+ * @param {string} [color] - color of the link
+ * @param {boolean} [noLinkStyle] - when true, link will not have MUI styles
  * @param {string} [to] - internal link URI
  * @param {string} [href] - external link URI
  * @param {boolean} [openInNewTab] - link will be opened in new tab when true
+ * @param {string} [underline] - controls "underline" style of the MUI link: 'hover' | 'always' | 'none'
  */
 const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(function Link(props, ref) {
   const {
-    activeClassName = 'active',
+    activeClassName = 'active', // This class is applied to the Link component when the router.pathname matches the href/to prop
     as: linkAs,
     className: classNameProps,
     href,
     noLinkStyle,
-    role, // Link don't have roles.
+    role, // Link don't have roles, so just exclude it from ...restOfProps
     color = APP_LINK_COLOR,
     underline = APP_LINK_UNDERLINE,
     to,
@@ -81,19 +92,19 @@ const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(functi
   } = props;
 
   const router = useRouter();
-  const destination = to || href || '';
+  const destination = to ?? href ?? '';
   const pathname = typeof destination === 'string' ? destination : destination.pathname;
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
   const isExternal =
-    typeof destination === 'string' && (destination.indexOf('http') === 0 || destination.indexOf('mailto:') === 0);
+    typeof destination === 'string' && (destination.startsWith('http') || destination.startsWith('mailto:'));
 
   const propsToRender = {
     color,
-    underline,
-    ...(openInNewTab ? { target: '_blank', rel: 'noreferrer noopener' } : {}),
+    underline, // 'hover' | 'always' | 'none'
+    ...(openInNewTab && EXTERNAL_LINK_PROPS),
     ...restOfProps,
   };
 
