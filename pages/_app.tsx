@@ -1,8 +1,7 @@
 import { AppProps } from 'next/app';
 import { FunctionComponent } from 'react';
 import { EmotionCache } from '@emotion/cache';
-import { AppThemeProvider } from '../src/theme';
-import createEmotionCache from '../src/theme/createEmotionCache';
+import { AppThemeProvider, createEmotionCache } from '../src/theme';
 import { AppStoreProvider } from '../src/store';
 import CurrentLayout from 'src/layout';
 

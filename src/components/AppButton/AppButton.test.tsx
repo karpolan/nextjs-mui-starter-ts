@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react';
 import { render, screen, within } from '@testing-library/react';
-import { AppThemeProvider } from '../../theme';
-import createEmotionCache from '../../theme/createEmotionCache';
+import { AppThemeProvider, createEmotionCache } from '../../theme';
 import AppButton, { AppButtonProps } from './AppButton';
 import DefaultIcon from '@mui/icons-material/MoreHoriz';
 import { capitalize } from '@mui/material/utils';
