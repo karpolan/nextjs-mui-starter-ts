@@ -8,7 +8,7 @@ import TopBar from './TopBar';
 import { LinkToPage } from '../utils/type';
 import { useAppStore } from '../store';
 import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
-import { BOTTOMBAR_DESKTOP_VISIBLE, TOPBAR_DESKTOP_HEIGHT, TOPBAR_MOBILE_HEIGHT } from './config';
+import { BOTTOM_BAR_DESKTOP_VISIBLE, TOP_BAR_DESKTOP_HEIGHT, TOP_BAR_MOBILE_HEIGHT } from './config';
 
 // TODO: change to your app name or other word
 const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentication
@@ -71,7 +71,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const onMobile = useOnMobile();
   const [sideBarVisible, setSideBarVisible] = useState(false);
   const [state] = useAppStore();
-  const bottomBarVisible = onMobile || BOTTOMBAR_DESKTOP_VISIBLE;
+  const bottomBarVisible = onMobile || BOTTOM_BAR_DESKTOP_VISIBLE;
   const title = TITLE_PUBLIC;
 
   const onSwitchDarkMode = useEventSwitchDarkMode();
@@ -88,7 +88,7 @@ const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
     <Stack
       sx={{
         minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? TOPBAR_MOBILE_HEIGHT : TOPBAR_DESKTOP_HEIGHT,
+        paddingTop: onMobile ? TOP_BAR_MOBILE_HEIGHT : TOP_BAR_DESKTOP_HEIGHT,
       }}
     >
       <Stack component="header">

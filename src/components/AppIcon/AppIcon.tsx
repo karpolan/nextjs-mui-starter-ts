@@ -1,5 +1,5 @@
 import { ComponentType, FunctionComponent, SVGAttributes } from 'react';
-import { ICON_SIZE } from '../config';
+import { APP_ICON_SIZE } from '../config';
 // SVG assets
 import LogoIcon from './icons/LogoIcon';
 // MUI Icons
@@ -68,7 +68,7 @@ export interface AppIconProps extends SVGAttributes<SVGElement> {
 const AppIcon: FunctionComponent<AppIconProps> = ({
   color,
   icon = 'default',
-  size = ICON_SIZE,
+  size = APP_ICON_SIZE,
   style,
   ...restOfProps
 }) => {

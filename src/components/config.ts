@@ -17,7 +17,7 @@ export const APP_BUTTON_MARGIN = 1;
 /**
  * AppIcon component
  */
-export const ICON_SIZE = 24;
+export const APP_ICON_SIZE = 24;
 
 /**
  * AppLink component

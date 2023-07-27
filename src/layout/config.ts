@@ -12,10 +12,10 @@ export const SIDEBAR_WIDTH = '240px';
 /**
  * TopBar configuration
  */
-export const TOPBAR_MOBILE_HEIGHT = '56px';
-export const TOPBAR_DESKTOP_HEIGHT = '64px';
+export const TOP_BAR_MOBILE_HEIGHT = '56px';
+export const TOP_BAR_DESKTOP_HEIGHT = '64px';
 
 /**
  * BottomBar configuration
  */
-export const BOTTOMBAR_DESKTOP_VISIBLE = false; // true;
+export const BOTTOM_BAR_DESKTOP_VISIBLE = false; // true;
