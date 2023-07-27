@@ -1,4 +1,4 @@
-import AppLink, { AppLinkForNextProps as AppLinkProp } from './AppLinkForNext';
+import AppLink, { AppLinkForNextProps as AppLinkProps } from './AppLinkForNext';
 
-export type { AppLinkProp };
+export type { AppLinkProps };
 export { AppLink as default, AppLink };
