@@ -1,9 +1,13 @@
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import { FunctionComponent, PropsWithChildren, useMemo } from 'react';
+import { createTheme, CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
+import { FunctionComponent, PropsWithChildren, use, useEffect, useMemo, useState } from 'react';
 import { useAppStore } from '../store';
 import DARK_THEME from './dark';
 import LIGHT_THEME from './light';
+
+function getThemeByDarkMode(darkMode: boolean) {
+  return darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
+}
 
 interface Props extends PropsWithChildren<{}> {
   emotionCache: EmotionCache; // You can omit it if you don't want to use Emotion styling library
@@ -16,10 +20,16 @@ interface Props extends PropsWithChildren<{}> {
  */
 const AppThemeProvider: FunctionComponent<Props> = ({ children, emotionCache }) => {
   const [state] = useAppStore();
-  // TODO: Make theme changes after full app loading.
-  // Maybe we need to use https://github.com/pacocoursey/next-themes npm
-  // Also take a look on this tutorial https://medium.com/@luca_79189/how-to-get-a-flickerless-persistent-dark-mode-in-your-next-js-app-example-with-mui-9581ea898314
-  const theme = useMemo(() => (state.darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME)), [state.darkMode]);
+  const [loading, setLoading] = useState(true);
+
+  const theme = useMemo(
+    () => getThemeByDarkMode(state.darkMode),
+    [state.darkMode] // Observe AppStore and re-create the theme when .darkMode changes
+  );
+
+  useEffect(() => setLoading(false), []); // Set .loading to false when the component is mounted
+
+  if (loading) return null; // Don't render anything until the component is mounted
 
   return (
     <CacheProvider value={emotionCache}>

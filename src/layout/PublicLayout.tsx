@@ -89,8 +89,8 @@ const PublicLayout: FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
           title={title}
           endNode={
             <AppIconButton
-              // icon={state.darkMode ? 'day' : 'night'} // Variant 1
-              icon="daynight" // Variant 2
+              icon={state.darkMode ? 'day' : 'night'} // Variant 1
+              // icon="daynight" // Variant 2
               title={state.darkMode ? 'Switch to Light mode' : 'Switch to Dark mode'}
               onClick={onSwitchDarkMode}
             />
