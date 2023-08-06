@@ -1,4 +1,4 @@
-# Next.js with App Router + Material UI starter project using TypeScript
+# Starter project for Next.js with App Router + Material UI using TypeScript
 
 Mix of [Create Next App](https://nextjs.org/docs/pages/api-reference/create-next-app) and [MUI](https://mui.com) with set of reusable components and utilities to build professional NextJS application faster.
 
