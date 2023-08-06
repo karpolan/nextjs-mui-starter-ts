@@ -1,6 +1,7 @@
-import { Box, Card, CardContent, CardHeader, Snackbar, Tooltip } from '@mui/material';
-import copyToClipboard from 'copy-to-clipboard';
+'use client';
 import { useState } from 'react';
+import copyToClipboard from 'copy-to-clipboard';
+import { Box, Card, CardContent, CardHeader, Snackbar, Tooltip } from '@mui/material';
 import { AppIconButton } from 'src/components';
 import { AppIconButtonProps } from 'src/components/AppIconButton/AppIconButton';
 

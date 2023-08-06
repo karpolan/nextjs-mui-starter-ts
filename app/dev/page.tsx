@@ -1,4 +1,3 @@
-'use client';
 import { NextPage } from 'next';
 import { redirect } from 'next/navigation';
 import { Stack, Typography } from '@mui/material';
