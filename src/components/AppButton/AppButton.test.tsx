@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { render, screen, within } from '@testing-library/react';
-import { AppThemeProvider, createEmotionCache } from '../../theme';
+import { ThemeProvider } from '../../theme';
 import AppButton, { AppButtonProps } from './AppButton';
 import DefaultIcon from '@mui/icons-material/MoreHoriz';
 import { randomText, capitalize } from '../../utils';
@@ -9,9 +9,9 @@ import { randomText, capitalize } from '../../utils';
  * AppButton wrapped with Theme Provider
  */
 const ComponentToTest: FunctionComponent<AppButtonProps> = (props) => (
-  <AppThemeProvider emotionCache={createEmotionCache()}>
+  <ThemeProvider>
     <AppButton {...props} />
-  </AppThemeProvider>
+  </ThemeProvider>
 );
 
 /**

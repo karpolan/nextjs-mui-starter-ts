@@ -1,8 +1,9 @@
+'use client';
 // See: https://github.com/mui-org/material-ui/blob/6b18675c7e6204b77f4c469e113f62ee8be39178/examples/nextjs-with-typescript/src/Link.tsx
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { AnchorHTMLAttributes, forwardRef } from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { APP_LINK_COLOR, APP_LINK_UNDERLINE } from '../config';
@@ -90,12 +91,11 @@ const AppLinkForNext = forwardRef<HTMLAnchorElement, AppLinkForNextProps>(functi
     openInNewTab = Boolean(href), // Open external links in new Tab by default
     ...restOfProps
   } = props;
-
-  const router = useRouter();
+  const currentPath = usePathname();
   const destination = to ?? href ?? '';
   const pathname = typeof destination === 'string' ? destination : destination.pathname;
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName,
+    [activeClassName]: pathname == currentPath && activeClassName,
   });
 
   const isExternal =

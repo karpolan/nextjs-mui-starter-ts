@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Stack } from '@mui/material';
 import { AppButton } from 'src/components';
 import { useAppStore } from 'src/store';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useEventLogout } from 'src/hooks';
 import { sessionStorageSet } from 'src/utils/sessionStorage';
 

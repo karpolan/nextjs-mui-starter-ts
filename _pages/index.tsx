@@ -1,3 +1,4 @@
+'use client';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { Stack, Typography } from '@mui/material';

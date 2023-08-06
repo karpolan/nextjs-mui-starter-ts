@@ -1,3 +1,4 @@
+'use client';
 import { NextPage } from 'next';
 import { Stack, Typography } from '@mui/material';
 import DemoAppAlert from 'src/components/forPages/shared/DemoAppAlerts';
@@ -8,7 +9,7 @@ import DemoAppImage from 'src/components/forPages/shared/DemoAppImage';
 
 /**
  * Renders Development tools when env.NEXT_PUBLIC_DEBUG is true
- * @page DevPage
+ * @page Dev
  */
 const DevPage: NextPage = () => {
   if (!process.env.NEXT_PUBLIC_DEBUG) return null; // Hide this page on when env.NEXT_PUBLIC_DEBUG is not set

@@ -1,6 +1,8 @@
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { createTheme, CssBaseline, LinearProgress, ThemeProvider } from '@mui/material';
-import { FunctionComponent, PropsWithChildren, use, useEffect, useMemo, useState } from 'react';
+'use client';
+import { FunctionComponent, PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import EmotionCacheProvider from './EmotionCacheProvider';
 import { useAppStore } from '../store';
 import DARK_THEME from './dark';
 import LIGHT_THEME from './light';
@@ -9,20 +11,16 @@ function getThemeByDarkMode(darkMode: boolean) {
   return darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
 }
 
-interface Props extends PropsWithChildren {
-  emotionCache: EmotionCache; // You can omit it if you don't want to use Emotion styling library
-}
-
 /**
  * Renders composition of Emotion's CacheProvider + MUI's ThemeProvider to wrap content of entire App
  * The Light or Dark themes applied depending on global .darkMode state
- * @param {EmotionCache} emotionCache - shared Emotion's cache to use in the App
+ * @component ThemeProvider
  */
-const AppThemeProvider: FunctionComponent<Props> = ({ children, emotionCache }) => {
+const ThemeProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [state] = useAppStore();
   const [loading, setLoading] = useState(true);
 
-  const theme = useMemo(
+  const currentTheme = useMemo(
     () => getThemeByDarkMode(state.darkMode),
     [state.darkMode] // Observe AppStore and re-create the theme when .darkMode changes
   );
@@ -32,15 +30,15 @@ const AppThemeProvider: FunctionComponent<Props> = ({ children, emotionCache }) 
   if (loading) return null; // Don't render anything until the component is mounted
 
   return (
-    <CacheProvider value={emotionCache}>
+    <EmotionCacheProvider options={{ key: 'mui' }}>
       {/* <StyledEngineProvider injectFirst> use this instead of Emotion's <CacheProvider/> if you want to use alternate styling library */}
-      <ThemeProvider theme={theme}>
+      <MuiThemeProvider theme={currentTheme}>
         <CssBaseline /* MUI Styles */ />
         {children}
-      </ThemeProvider>
+      </MuiThemeProvider>
       {/* </StyledEngineProvider> */}
-    </CacheProvider>
+    </EmotionCacheProvider>
   );
 };
 
-export default AppThemeProvider;
+export default ThemeProvider;

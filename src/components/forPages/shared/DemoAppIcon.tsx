@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import copyToClipboard from 'copy-to-clipboard';
 import { Box, Card, CardContent, CardHeader, Snackbar } from '@mui/material';

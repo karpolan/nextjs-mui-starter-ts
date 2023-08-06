@@ -1,3 +1,4 @@
+'use client';
 import { ElementType, FunctionComponent, ReactNode, useMemo } from 'react';
 import Button, { ButtonProps } from '@mui/material/Button';
 import AppIcon from '../AppIcon';
