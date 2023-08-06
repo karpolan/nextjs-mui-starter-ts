@@ -1,18 +1,22 @@
 'use client';
 import { NextPage } from 'next';
+import { redirect } from 'next/navigation';
 import { Stack, Typography } from '@mui/material';
-import DemoAppAlert from 'src/components/forPages/shared/DemoAppAlerts';
-import DemoAppButton from 'src/components/forPages/shared/DemoAppButton';
-import DemoAppIcon from 'src/components/forPages/shared/DemoAppIcon';
-import DemoAppIconButton from 'src/components/forPages/shared/DemoAppIconButton';
-import DemoAppImage from 'src/components/forPages/shared/DemoAppImage';
+import DemoAppAlert from './components/DemoAppAlerts';
+import DemoAppButton from './components/DemoAppButton';
+import DemoAppIcon from './components/DemoAppIcon';
+import DemoAppIconButton from './components/DemoAppIconButton';
+import DemoAppImage from './components/DemoAppImage';
 
 /**
  * Renders Development tools when env.NEXT_PUBLIC_DEBUG is true
  * @page Dev
  */
 const DevPage: NextPage = () => {
-  if (!process.env.NEXT_PUBLIC_DEBUG) return null; // Hide this page on when env.NEXT_PUBLIC_DEBUG is not set
+  if (!process.env.NEXT_PUBLIC_DEBUG) {
+    redirect('/');
+    return null; // Hide this page on when env.NEXT_PUBLIC_DEBUG is not set
+  }
 
   return (
     <Stack spacing={2} padding={2}>
@@ -22,11 +26,11 @@ const DevPage: NextPage = () => {
       </Stack>
 
       <Stack alignItems="center" spacing={1}>
-        <DemoAppAlert />
-        <DemoAppButton />
         <DemoAppIcon />
         <DemoAppIconButton />
         <DemoAppImage />
+        <DemoAppAlert />
+        <DemoAppButton />
       </Stack>
     </Stack>
   );

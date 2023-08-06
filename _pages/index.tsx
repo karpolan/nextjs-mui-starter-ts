@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { Stack, Typography } from '@mui/material';
 import { AppLink } from 'src/components';
-import DemoAppAlert from 'src/components/forPages/shared/DemoAppAlerts';
+import DemoAppAlert from 'app/dev/components/DemoAppAlerts';
 import DemoAppButton from 'src/components/forPages/shared/DemoAppButton';
 import DemoAppIcon from 'src/components/forPages/shared/DemoAppIcon';
 import DemoAppIconButton from 'src/components/forPages/shared/DemoAppIconButton';

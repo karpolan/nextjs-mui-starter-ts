@@ -2,11 +2,11 @@
 import { Metadata, NextPage } from 'next';
 import { Stack, Typography } from '@mui/material';
 import { AppLink } from 'src/components';
-import DemoAppAlert from 'src/components/forPages/shared/DemoAppAlerts';
-import DemoAppButton from 'src/components/forPages/shared/DemoAppButton';
-import DemoAppIcon from 'src/components/forPages/shared/DemoAppIcon';
-import DemoAppIconButton from 'src/components/forPages/shared/DemoAppIconButton';
-import DemoAppImage from 'src/components/forPages/shared/DemoAppImage';
+import DemoAppAlert from '../dev/components/DemoAppAlerts';
+import DemoAppButton from '../dev/components/DemoAppButton';
+import DemoAppIcon from '../dev/components/DemoAppIcon';
+import DemoAppIconButton from '../dev/components/DemoAppIconButton';
+import DemoAppImage from '../dev/components/DemoAppImage';
 
 export const metadata: Metadata = {
   title: '_TITLE_',
