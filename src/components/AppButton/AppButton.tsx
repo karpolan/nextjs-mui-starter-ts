@@ -6,6 +6,10 @@ import { APP_BUTTON_VARIANT } from '../config';
 
 const MUI_BUTTON_COLORS = ['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning'];
 
+const DEFAULT_SX_VALUES = {
+  margin: 1, // By default the AppButton has theme.spacing(1) margin on all sides
+};
+
 export interface AppButtonProps extends Omit<ButtonProps, 'color' | 'endIcon' | 'startIcon'> {
   color?: string; // Not only 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
   endIcon?: string | ReactNode;
@@ -43,7 +47,7 @@ const AppButton: FunctionComponent<AppButtonProps> = ({
   endIcon,
   label,
   startIcon,
-  sx: propSx = { margin: 1 },
+  sx: propSx = DEFAULT_SX_VALUES,
   text,
   underline = 'none',
   variant = APP_BUTTON_VARIANT,

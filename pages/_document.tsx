@@ -1,9 +1,8 @@
 import { ReactElement } from 'react';
-import Document, { Html, Head, Main, NextScript, DocumentProps } from 'next/document';
-import createEmotionCache from '../src/theme/createEmotionCache';
-import defaultThemeOptions from '../src/theme';
-import createEmotionServer from '@emotion/server/create-instance';
 import { SimplePaletteColorOptions } from '@mui/material';
+import Document, { Html, Head, Main, NextScript, DocumentProps } from 'next/document';
+import defaultThemeOptions, { createEmotionCache } from '../src/theme';
+import createEmotionServer from '@emotion/server/create-instance';
 
 const THEME_COLOR = (defaultThemeOptions.palette?.primary as SimplePaletteColorOptions)?.main || '#FFFFFF';
 
