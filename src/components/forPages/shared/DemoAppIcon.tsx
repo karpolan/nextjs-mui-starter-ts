@@ -14,7 +14,7 @@ const DemoAppIcon = () => {
 
   return (
     <Card>
-      <CardHeader title="AppIcon" subheader="A sample of each registered AppIcon. Click to copy the JSX code" />
+      <CardHeader title="AppIcon" subheader="A sample of each registered AppIcon. Click to copy the JSX code." />
       <CardContent sx={{ px: 1, py: 0 }}>
         <Box>
           {Object.keys(ICONS).map((icon) => (
@@ -32,6 +32,9 @@ const DemoAppIcon = () => {
         </Box>
         <Snackbar
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          ContentProps={{
+            sx: { display: 'block', textAlign: 'center' },
+          }}
           open={snackbarOpen}
           message="JSX code copied to Clipboard"
         />

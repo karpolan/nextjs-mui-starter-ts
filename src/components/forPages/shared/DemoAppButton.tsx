@@ -1,6 +1,51 @@
-import { Card, CardContent, CardHeader } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import { Card, CardContent, CardHeader, Snackbar } from '@mui/material';
 import { AppButton } from 'src/components';
+import { AppButtonProps } from 'src/components/AppButton/AppButton';
+import copyToClipboard from 'copy-to-clipboard';
+
+/**
+ * Same as AppButton but with onClick handler that copies JSX code to Clipboard
+ * @component InternalAppButton
+ */
+const InternalAppButton = (props: AppButtonProps) => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const onClick = () => {
+    const { color, endIcon, href, startIcon, size, title, to } = props;
+
+    const propsToPass = [
+      color && `color="${color}"`,
+      endIcon && `endIcon="${endIcon}"`,
+      href && `href="${href}"`,
+      startIcon && `startIcon="${startIcon}"`,
+      size && `size="${size}"`,
+      title && `title="${title}"`,
+      to && `to="${to}"`,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const code = `<AppButton ${propsToPass} />`;
+    copyToClipboard(code);
+    setSnackbarOpen(true); // Show snackbar
+    setTimeout(() => setSnackbarOpen(false), 3000); // Hide snackbar after small delay
+  };
+
+  return (
+    <>
+      <AppButton {...props} onClick={onClick} />
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        ContentProps={{
+          sx: { display: 'block', textAlign: 'center' },
+        }}
+        open={snackbarOpen}
+        message="JSX code copied to Clipboard"
+      />
+    </>
+  );
+};
 
 /**
  * Renders "Demo Section" for AppButton component
@@ -11,30 +56,30 @@ const DemoAppButton = () => {
     <Card>
       <CardHeader
         title="AppButton"
-        subheader="Pre-configured Button with lots of improvements, SVG icons specified by name, internal and external links, custom colors, etc."
+        subheader="Pre-configured Button with lots of improvements, SVG icons specified by name, internal and external links, custom colors, etc. Click to copy the JSX code."
       />
       <CardContent sx={{ px: 1, py: 0 }}>
-        <AppButton color="primary">primary</AppButton>
-        <AppButton color="secondary">secondary</AppButton>
-        <AppButton color="success">success</AppButton>
-        <AppButton color="error">error</AppButton>
-        <AppButton color="info">info</AppButton>
-        <AppButton color="warning">warning</AppButton>
-        <AppButton color="red" endIcon="close">
+        <InternalAppButton color="primary">primary</InternalAppButton>
+        <InternalAppButton color="secondary">secondary</InternalAppButton>
+        <InternalAppButton color="success">success</InternalAppButton>
+        <InternalAppButton color="error">error</InternalAppButton>
+        <InternalAppButton color="info">info</InternalAppButton>
+        <InternalAppButton color="warning">warning</InternalAppButton>
+        <InternalAppButton color="red" endIcon="close">
           Red
-        </AppButton>
-        <AppButton color="green" startIcon="menu">
+        </InternalAppButton>
+        <InternalAppButton color="green" startIcon="menu">
           Green
-        </AppButton>
-        <AppButton color="blue" startIcon="menu" endIcon="close">
+        </InternalAppButton>
+        <InternalAppButton color="blue" startIcon="menu" endIcon="close">
           Blue
-        </AppButton>
-        <AppButton color="#f0f" to="/">
+        </InternalAppButton>
+        <InternalAppButton color="#f0f" to="/">
           #f0f
-        </AppButton>
-        <AppButton color="rgba(255, 0, 255, 0.5)" to="/">
+        </InternalAppButton>
+        <InternalAppButton color="rgba(255, 0, 255, 0.5)" to="/">
           rgba(255, 0, 255, 0.5)
-        </AppButton>
+        </InternalAppButton>
       </CardContent>
     </Card>
   );

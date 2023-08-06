@@ -17,7 +17,7 @@ export const MUI_ICON_BUTTON_COLORS = [
   'warning',
 ];
 
-interface Props extends Omit<IconButtonProps, 'color'> {
+export interface AppIconButtonProps extends Omit<IconButtonProps, 'color'> {
   color?: string; // Not only 'inherit' | 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
   icon?: string;
   iconProps?: Partial<AppIconProps>;
@@ -43,7 +43,7 @@ interface Props extends Omit<IconButtonProps, 'color'> {
  * @param {string} [to] - internal link URI
  * @param {object} [tooltipProps] - additional props to pass into the Tooltip component
  */
-const AppIconButton: FunctionComponent<Props> = ({
+const AppIconButton: FunctionComponent<AppIconButtonProps> = ({
   color = 'default',
   component,
   children,

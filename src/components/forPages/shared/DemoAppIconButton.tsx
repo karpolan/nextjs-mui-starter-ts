@@ -1,5 +1,50 @@
-import { Box, Card, CardContent, CardHeader, Tooltip } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Snackbar, Tooltip } from '@mui/material';
+import copyToClipboard from 'copy-to-clipboard';
+import { useState } from 'react';
 import { AppIconButton } from 'src/components';
+import { AppIconButtonProps } from 'src/components/AppIconButton/AppIconButton';
+
+/**
+ * Same as AppIconButton but with onClick handler that copies JSX code to Clipboard
+ * @component InternalAppIconButton
+ */
+const InternalAppIconButton = (props: AppIconButtonProps) => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const onClick = () => {
+    const { icon, color, href, size, title, to } = props;
+
+    const propsToPass = [
+      icon && `icon="${icon}"`,
+      color && `color="${color}"`,
+      href && `href="${href}"`,
+      size && `size="${size}"`,
+      title && `title="${title}"`,
+      to && `to="${to}"`,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    const code = `<AppIconButton ${propsToPass} />`;
+    copyToClipboard(code);
+    setSnackbarOpen(true); // Show snackbar
+    setTimeout(() => setSnackbarOpen(false), 3000); // Hide snackbar after small delay
+  };
+
+  return (
+    <>
+      <AppIconButton {...props} onClick={onClick} />
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        ContentProps={{
+          sx: { display: 'block', textAlign: 'center' },
+        }}
+        open={snackbarOpen}
+        message="JSX code copied to Clipboard"
+      />
+    </>
+  );
+};
 
 /**
  * Renders "Demo Section" for AppIconButton component
@@ -10,40 +55,40 @@ const DemoAppIconButton = () => {
     <Card>
       <CardHeader
         title="AppIconButton"
-        subheader="Composition of IconButton + Tooltip with SVG icon specified by name"
+        subheader="Composition of IconButton + Tooltip with SVG icon specified by name. Click to copy JSX code."
       />
       <CardContent sx={{ px: 1, py: 0 }}>
         <Box>
-          <AppIconButton title="Default icon, no color specified" />
-          <AppIconButton icon="close" color="primary" title="Close icon with Primary color" />
-          <AppIconButton icon="menu" color="secondary" title="Menu icon with Secondary color" />
-          <AppIconButton icon="settings" color="error" title="Settings icon with Error color" />
-          <AppIconButton icon="search" color="warning" title="Search icon with Warning color" />
-          <AppIconButton icon="info" color="info" title="Info icon with Info color" />
-          <AppIconButton icon="home" color="success" title="Home icon with Success color" />
-          <AppIconButton icon="account" color="inherit" title="Account icon with Inherit color" />
+          <InternalAppIconButton title="Default icon, no color specified" />
+          <InternalAppIconButton icon="close" color="primary" title="Close icon with Primary color" />
+          <InternalAppIconButton icon="menu" color="secondary" title="Menu icon with Secondary color" />
+          <InternalAppIconButton icon="settings" color="error" title="Settings icon with Error color" />
+          <InternalAppIconButton icon="search" color="warning" title="Search icon with Warning color" />
+          <InternalAppIconButton icon="info" color="info" title="Info icon with Info color" />
+          <InternalAppIconButton icon="home" color="success" title="Home icon with Success color" />
+          <InternalAppIconButton icon="account" color="inherit" title="Account icon with Inherit color" />
           <Tooltip title="Disabled Close icon with Secondary color">
             <span>
-              <AppIconButton icon="close" color="secondary" disabled />
+              <InternalAppIconButton icon="close" color="secondary" disabled />
             </span>
           </Tooltip>
 
-          <AppIconButton
+          <InternalAppIconButton
             color="secondary"
             icon="close"
             size="large"
             to="/about"
             title="Large icon with Secondary color as Internal link"
           />
-          <AppIconButton
+          <InternalAppIconButton
             color="#F0F"
             href="https://karpolan.com"
             icon="close"
             size="small"
             title="Small icon with Custom color as External link"
           />
-          <AppIconButton icon="menu" color="primary" size="small" title="Small Menu icon with Primary color" />
-          <AppIconButton
+          <InternalAppIconButton icon="menu" color="primary" size="small" title="Small Menu icon with Primary color" />
+          <InternalAppIconButton
             color="primary"
             title="Default icon with Primary color and Arrow tooltip"
             tooltipProps={{ arrow: true }}
