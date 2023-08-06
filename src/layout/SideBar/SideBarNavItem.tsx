@@ -1,5 +1,5 @@
 import { FunctionComponent, MouseEventHandler } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { AppIcon, AppLink } from '../../components';
 import { LinkToPage } from '../../utils/type';
@@ -23,8 +23,8 @@ const SideBarNavItem: FunctionComponent<Props> = ({
   title,
   onClick,
 }) => {
-  const router = useRouter();
-  const selected = propSelected || (path && router.pathname.startsWith(path)) || false;
+  const pathname = usePathname();
+  const selected = propSelected || (path && pathname.startsWith(path)) || false;
 
   return (
     <ListItemButton

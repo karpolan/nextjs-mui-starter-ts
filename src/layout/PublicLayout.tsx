@@ -1,3 +1,4 @@
+'use client';
 import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
 import { Stack } from '@mui/material/';
 import { AppIconButton } from '../components';

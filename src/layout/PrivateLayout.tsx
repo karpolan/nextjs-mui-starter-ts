@@ -1,5 +1,6 @@
+'use client';
 import { useState, useCallback, FunctionComponent, PropsWithChildren } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Stack } from '@mui/material';
 import { AppIconButton } from 'src/components';
 import ErrorBoundary from '../components/ErrorBoundary';

@@ -1,28 +1,29 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
-import { useRouter } from 'next/router';
 import { render, screen } from '@testing-library/react';
-import AppLink, { AppLinkProps } from './';
 import mockRouter from 'next-router-mock';
-import { randomColor } from '../../utils';
 /* IMPORTANT! To get 'next/router' working with tests, add into "jest.setup.js" file following:
 ---
 jest.mock('next/router', () => require('next-router-mock')); 
 ---
 */
+import AppLink from './';
+import { randomColor } from '../../utils';
 
-const MockRouter: FunctionComponent<PropsWithChildren> = ({ children }) => {
-  useRouter();
-  return <>{children}</>;
-};
+jest.mock('next/navigation', () => {
+  const result = {
+    ...require('next-router-mock'),
+    // useSearchParams: () => jest.fn(),
+    usePathname: () => {
+      const router = mockRouter;
+      return router.asPath;
+    },
+  };
+  return result;
+});
 
 /**
  * AppLink wrapped with Mocked Router
  */
-const ComponentToTest: FunctionComponent<AppLinkProps> = (props) => (
-  <MockRouter>
-    <AppLink {...props} />
-  </MockRouter>
-);
+const ComponentToTest = AppLink;
 
 /**
  * Tests for <AppLink/> component

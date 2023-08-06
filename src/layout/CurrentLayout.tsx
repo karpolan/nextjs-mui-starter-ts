@@ -1,3 +1,4 @@
+'use client';
 import React, { FunctionComponent, PropsWithChildren } from 'react';
 import PrivateLayout from './PrivateLayout';
 import PublicLayout from './PublicLayout';
