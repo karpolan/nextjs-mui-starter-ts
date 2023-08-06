@@ -1,3 +1,4 @@
+'use client';
 import { FunctionComponent, useCallback, MouseEvent } from 'react';
 import { Stack, Divider, Drawer, DrawerProps, FormControlLabel, Switch, Tooltip } from '@mui/material';
 import { AppIconButton } from '../../components';

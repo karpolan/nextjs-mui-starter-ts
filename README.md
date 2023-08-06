@@ -1,13 +1,15 @@
-# Next.js + MUI starter project using TypeScript
+# Starter project for Next.js with App Router + Material UI using TypeScript
 
-Mix of [Create Next App](https://nextjs.org/docs/api-reference/create-next-app) and [MUI](https://mui.com) with set of reusable components and utilities to build professional NextJS application faster.
+Mix of [Create Next App](https://nextjs.org/docs/pages/api-reference/create-next-app) and [MUI](https://mui.com) with set of reusable components and utilities to build professional NextJS application faster.
 
-- [Source Code](https://github.com/karpolan/nextjs-typescript-mui-starter)
-- [Online Demo](https://nextjs-typescript-mui-starter.vercel.app)
+- [Source Code](https://github.com/karpolan/nextjs-mui-starter-ts)
+- [Online Demo](https://nextjs-mui-starter-ts.vercel.app)
+
+_Warning: if your are planning to use **Pages Router** (not **App Router**) then use [this template](https://github.com/karpolan/nextjs-with-pages-mui-starter-ts)_
 
 ## How to use
 
-1. Clone or download the repo from: https://github.com/karpolan/nextjs-typescript-mui-starter
+1. Clone or download the repo from: https://github.com/karpolan/nextjs-mui-starter-ts
 2. Copy `.env.sample` file into `.env` file
 3. Replace `_TITLE_` and `_DESCRIPTION_` in all files with own texts
 4. Check and resolve all `// TODO: ` directives
@@ -43,7 +45,7 @@ Builds the app for production or local development to the `.next` folder.<br />
 
 ### `yarn build:static` or `npm run build:static`
 
-_Note: this is deprecated way to build the app!_
+_Note: this is deprecated way to build the Next.js app!_
 
 Builds the SSG (static site generator) version of the app in the `out` folder.<br />
 
@@ -51,4 +53,4 @@ Builds the SSG (static site generator) version of the app in the `out` folder.<b
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out our [Next.js deployment documentation]https://nextjs.org/docs/pages/building-your-application/deploying) for more details.

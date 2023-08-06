@@ -1,4 +1,3 @@
-'use client';
 import { Metadata, NextPage } from 'next';
 import { Stack, Typography } from '@mui/material';
 import { AppLink } from 'src/components';

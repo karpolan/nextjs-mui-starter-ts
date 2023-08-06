@@ -1,12 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import NextImage, { ImageLoaderProps, ImageProps } from 'next/image';
-
-/**
- * This is simply fix for NextJS image optimization
- */
-const customImageLoader = ({ src }: ImageLoaderProps) => {
-  return src;
-};
+import { FunctionComponent } from 'react';
+import NextImage, { ImageProps } from 'next/image';
 
 interface AppImageProps extends Omit<ImageProps, 'alt'> {
   alt?: string; // Make property optional as it was before NextJs v13
@@ -24,17 +17,7 @@ const AppImage: FunctionComponent<AppImageProps> = ({
   ...restOfProps
 }) => {
   // Uses custom loader + unoptimized="true" to avoid NextImage warning https://nextjs.org/docs/api-reference/next/image#unoptimized
-  return (
-    <NextImage
-      alt={alt}
-      loader={customImageLoader}
-      height={height}
-      title={title}
-      unoptimized={true}
-      width={width}
-      {...restOfProps}
-    />
-  );
+  return <NextImage alt={alt} height={height} title={title} unoptimized={true} width={width} {...restOfProps} />;
 };
 
 export default AppImage;

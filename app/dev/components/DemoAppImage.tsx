@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, Stack } from '@mui/material';
-import React from 'react';
 import { AppImage } from 'src/components';
 
 /**

@@ -1,3 +1,4 @@
+'use client';
 import { FunctionComponent, MouseEventHandler } from 'react';
 import { usePathname } from 'next/navigation';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
