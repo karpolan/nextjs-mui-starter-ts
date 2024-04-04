@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { sessionStorageGet, sessionStorageDelete } from 'src/utils/sessionStorage';
+import { sessionStorageGet, sessionStorageDelete } from '@/utils/sessionStorage';
 import { useAppStore } from '../store';
 
 /**

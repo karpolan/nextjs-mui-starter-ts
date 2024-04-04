@@ -1,10 +1,11 @@
+'use client';
 import { useEffect, useState } from 'react';
 import useWindowsSize from './useWindowSize';
 import { useMediaQuery, useTheme } from '@mui/material';
-import { IS_SERVER } from 'src/utils';
+import { IS_SERVER } from '@/utils';
 
 export const MOBILE_SCREEN_MAX_WIDTH = 600; // Sync with https://mui.com/material-ui/customization/breakpoints/
-export const SERVER_SIDE_ON_MOBILE_DEFAULT_VALUE = true; // true - for mobile, false - for desktop
+export const SERVER_SIDE_MOBILE_FIRST = true; // true - for mobile, false - for desktop
 
 /**
  * Hook to detect onMobile vs. onDesktop using "resize" event listener
@@ -35,7 +36,7 @@ function useOnMobileByMediaQuery() {
 function useOnMobileForNextJs() {
   // const onMobile = useOnMobileByWindowsResizing();
   const onMobile = useOnMobileByMediaQuery();
-  const [onMobileDelayed, setOnMobileDelayed] = useState(SERVER_SIDE_ON_MOBILE_DEFAULT_VALUE);
+  const [onMobileDelayed, setOnMobileDelayed] = useState(SERVER_SIDE_MOBILE_FIRST);
 
   useEffect(() => {
     setOnMobileDelayed(onMobile); // Next.js don't allow to use useOnMobileXxx() directly, so we need to use this workaround
@@ -71,5 +72,5 @@ function useMobileOrDesktopByChangingBodyClass() {
  */
 // export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_IS_MOBILE_VALUE : useOnMobileByWindowsResizing;
 // export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_IS_MOBILE_VALUE : useOnMobileByMediaQuery;
-export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_ON_MOBILE_DEFAULT_VALUE : useOnMobileForNextJs;
+export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_MOBILE_FIRST : useOnMobileForNextJs;
 export const useBodyClassForMobileOrDesktop = IS_SERVER ? () => undefined : useMobileOrDesktopByChangingBodyClass;

@@ -1,58 +1,10 @@
 import { ComponentType, FunctionComponent, SVGAttributes } from 'react';
 import { APP_ICON_SIZE } from '../config';
-// SVG assets
-import LogoIcon from './icons/LogoIcon';
-// MUI Icons
-import DefaultIcon from '@mui/icons-material/MoreHoriz';
-import SettingsIcon from '@mui/icons-material/Settings';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-import DayNightIcon from '@mui/icons-material/Brightness4';
-import NightIcon from '@mui/icons-material/Brightness3';
-import DayIcon from '@mui/icons-material/Brightness5';
-import SearchIcon from '@mui/icons-material/Search';
-import InfoIcon from '@mui/icons-material/Info';
-import HomeIcon from '@mui/icons-material/Home';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import PersonIcon from '@mui/icons-material/Person';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
-
-/**
- * How to use:
- * 1. Import all required MUI or other SVG icons into this file.
- * 2. Add icons with "unique lowercase names" into ICONS object.
- * 3. Use icons everywhere in the App by their names in <AppIcon icon="xxx" /> component
- * Important: properties of ICONS object MUST be lowercase!
- * Note: You can use camelCase or UPPERCASE in the <AppIcon icon="someIconByName" /> component
- */
-export const ICONS: Record<string, ComponentType> = {
-  default: DefaultIcon,
-  logo: LogoIcon,
-  close: CloseIcon,
-  menu: MenuIcon,
-  settings: SettingsIcon,
-  visibilityon: VisibilityIcon,
-  visibilityoff: VisibilityOffIcon,
-  daynight: DayNightIcon,
-  night: NightIcon,
-  day: DayIcon,
-  search: SearchIcon,
-  info: InfoIcon,
-  home: HomeIcon,
-  account: AccountCircle,
-  signup: PersonAddIcon,
-  login: PersonIcon,
-  logout: ExitToAppIcon,
-  notifications: NotificationsIcon,
-};
+import { IconName, ICONS } from './config';
 
 export interface AppIconProps extends SVGAttributes<SVGElement> {
   color?: string;
-  icon?: string;
+  icon?: IconName | string;
   size?: string | number;
   title?: string;
 }
@@ -72,12 +24,12 @@ const AppIcon: FunctionComponent<AppIconProps> = ({
   style,
   ...restOfProps
 }) => {
-  const iconName = (icon || 'default').trim().toLowerCase();
+  const iconName = (icon || 'default').trim().toLowerCase() as IconName;
 
-  let ComponentToRender = ICONS[iconName];
+  let ComponentToRender: ComponentType = ICONS[iconName];
   if (!ComponentToRender) {
     console.warn(`AppIcon: icon "${iconName}" is not found!`);
-    ComponentToRender = DefaultIcon;
+    ComponentToRender = ICONS.default; // ICONS['default'];
   }
 
   const propsToRender = {

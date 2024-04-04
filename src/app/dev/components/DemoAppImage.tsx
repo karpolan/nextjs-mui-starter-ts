@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, Stack } from '@mui/material';
-import { AppImage } from 'src/components';
+import { AppImage } from '@/components';
 
 /**
  * Renders "Demo Section" for AppImage component
