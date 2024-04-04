@@ -1,7 +1,7 @@
 {
   "name": "nextjs-mui-starter-ts",
-  "version": "0.0.1",
-  "description": "Starter project for Next.js with App Router + Material UI using TypeScript",
+  "version": "0.1.3",
+  "description": "_DESCRIPTION_",
   "author": {
     "name": "Anton Karpenko",
     "email": "i@karpolan.com",
