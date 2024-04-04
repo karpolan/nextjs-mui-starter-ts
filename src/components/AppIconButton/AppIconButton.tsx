@@ -4,6 +4,7 @@ import AppIcon from '../AppIcon';
 import AppLink from '../AppLink';
 import { alpha } from '@mui/material';
 import { AppIconProps } from '../AppIcon/AppIcon';
+import { IconName } from '../AppIcon/config';
 
 export const MUI_ICON_BUTTON_COLORS = [
   'inherit',
@@ -18,7 +19,7 @@ export const MUI_ICON_BUTTON_COLORS = [
 
 export interface AppIconButtonProps extends Omit<IconButtonProps, 'color'> {
   color?: string; // Not only 'inherit' | 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
-  icon?: string;
+  icon?: IconName | string;
   iconProps?: Partial<AppIconProps>;
   // Missing props
   component?: ElementType; // Could be RouterLink, AppLink, <a>, etc.

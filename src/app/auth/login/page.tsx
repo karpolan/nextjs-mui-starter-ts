@@ -1,12 +1,12 @@
 'use client';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { Stack } from '@mui/material';
-import { AppButton } from 'src/components';
-import { useAppStore } from 'src/store';
 import { useRouter } from 'next/navigation';
-import { useEventLogout } from 'src/hooks';
-import { sessionStorageSet } from 'src/utils/sessionStorage';
+import { Stack } from '@mui/material';
+import { AppButton } from '@/components';
+import { useAppStore } from '@/store';
+import { useEventLogout } from '@/hooks';
+import { sessionStorageSet } from '@/utils/sessionStorage';
 
 /**
  * User Login page

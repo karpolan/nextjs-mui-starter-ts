@@ -2,7 +2,7 @@
 import { useState, useCallback, FunctionComponent, PropsWithChildren } from 'react';
 import { useRouter } from 'next/navigation';
 import { Stack } from '@mui/material';
-import { AppIconButton } from 'src/components';
+import { AppIconButton } from '@/components';
 import ErrorBoundary from '../components/ErrorBoundary';
 import SideBar from './SideBar';
 import TopBar from './TopBar';

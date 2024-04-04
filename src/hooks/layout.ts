@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useWindowsSize from './useWindowSize';
 import { useMediaQuery, useTheme } from '@mui/material';
-import { IS_SERVER } from 'src/utils';
+import { IS_SERVER } from '@/utils';
 
 export const MOBILE_SCREEN_MAX_WIDTH = 600; // Sync with https://mui.com/material-ui/customization/breakpoints/
 export const SERVER_SIDE_ON_MOBILE_DEFAULT_VALUE = true; // true - for mobile, false - for desktop

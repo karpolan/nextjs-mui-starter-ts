@@ -43,12 +43,6 @@ Launches the test runner in the interactive watch mode.<br />
 
 Builds the app for production or local development to the `.next` folder.<br />
 
-### `yarn build:static` or `npm run build:static`
-
-_Note: this is deprecated way to build the Next.js app!_
-
-Builds the SSG (static site generator) version of the app in the `out` folder.<br />
-
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

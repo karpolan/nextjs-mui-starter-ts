@@ -1,9 +1,9 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Metadata } from 'next';
 import { SimplePaletteColorOptions } from '@mui/material';
-import { AppStoreProvider } from 'src/store';
-import defaultTheme, { ThemeProvider } from 'src/theme';
-import CurrentLayout from 'src/layout';
+import { AppStoreProvider } from '@/store';
+import defaultTheme, { ThemeProvider } from '@/theme';
+import CurrentLayout from '@/layout';
 import './globals.css';
 
 const THEME_COLOR = (defaultTheme.palette?.primary as SimplePaletteColorOptions)?.main || '#FFFFFF';

@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { IS_SERVER } from 'src/utils';
+import { IS_SERVER } from '@/utils';
 
 const MOBILE_WINDOWS_SIZE = { width: 720, height: 1280 };
 const DESKTOP_WINDOWS_SIZE = { width: 1920, height: 1080 };

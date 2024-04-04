@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import { NextPage } from 'next';
-import { AppLink } from 'src/components';
+import { AppLink } from '@/components';
 
 /**
  * Renders About Application page

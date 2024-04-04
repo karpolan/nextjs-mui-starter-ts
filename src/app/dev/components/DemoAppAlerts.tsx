@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from '@mui/material';
-import { AppAlert } from 'src/components';
+import { AppAlert } from '@/components';
 
 /**
  * Renders "Demo Section" for AppButton component

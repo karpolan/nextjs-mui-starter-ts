@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import copyToClipboard from 'copy-to-clipboard';
 import { Box, Card, CardContent, CardHeader, Snackbar } from '@mui/material';
-import { AppIconButton } from 'src/components';
-import { ICONS } from 'src/components/AppIcon/AppIcon';
+import { AppIconButton } from '@/components';
+import { ICONS } from '@/components/AppIcon/config';
 
 /**
  * Renders "Demo Section" for AppIcon component
