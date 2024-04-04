@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  // output: 'export', // Use this if you want to create "static generated website" (SSG), result in "/out" folder
+  output: 'export', // Use this if you want to create "static generated website" (SSG), result in "/out" folder
   trailingSlash: true,
   images: { unoptimized: true },
 
