@@ -3,7 +3,7 @@ import { Tooltip, IconButton, IconButtonProps, TooltipProps } from '@mui/materia
 import AppIcon from '../AppIcon';
 import AppLink from '../AppLink';
 import { alpha } from '@mui/material';
-import { AppIconProps } from '../AppIcon/AppIcon';
+import { Props } from '../AppIcon/AppIcon';
 import { IconName } from '../AppIcon/config';
 
 export const MUI_ICON_BUTTON_COLORS = [
@@ -20,7 +20,7 @@ export const MUI_ICON_BUTTON_COLORS = [
 export interface AppIconButtonProps extends Omit<IconButtonProps, 'color'> {
   color?: string; // Not only 'inherit' | 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
   icon?: IconName | string;
-  iconProps?: Partial<AppIconProps>;
+  iconProps?: Partial<Props>;
   // Missing props
   component?: ElementType; // Could be RouterLink, AppLink, <a>, etc.
   to?: string; // Link prop

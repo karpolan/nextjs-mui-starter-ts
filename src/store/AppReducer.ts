@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import { localStorageSet } from '../utils/localStorage';
-import { AppStoreState } from './AppStore';
+import { AppStoreState } from './config';
 
 /**
  * Reducer for global AppStore using "Redux styled" actions

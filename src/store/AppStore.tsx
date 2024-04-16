@@ -12,25 +12,13 @@ import {
 import AppReducer from './AppReducer';
 import { localStorageGet } from '../utils/localStorage';
 import { IS_SERVER } from '../utils/environment';
-
-/**
- * AppState data structure and initial values
- */
-export interface AppStoreState {
-  darkMode: boolean;
-  isAuthenticated: boolean;
-  currentUser?: object | undefined;
-}
-const INITIAL_APP_STATE: AppStoreState = {
-  darkMode: false, // Overridden by useMediaQuery('(prefers-color-scheme: dark)') in AppStore
-  isAuthenticated: false, // Overridden in AppStore by checking auth token
-};
+import { APP_STORE_INITIAL_STATE, AppStoreState } from './config';
 
 /**
  * Instance of React Context for global AppStore
  */
 export type AppContextReturningType = [AppStoreState, Dispatch<any>];
-const AppContext = createContext<AppContextReturningType>([INITIAL_APP_STATE, () => null]);
+const AppContext = createContext<AppContextReturningType>([APP_STORE_INITIAL_STATE, () => null]);
 
 /**
  * Main global Store as HOC with React Context API
@@ -48,7 +36,7 @@ const AppStoreProvider: FunctionComponent<PropsWithChildren> = ({ children }) =>
   // const tokenExists = Boolean(loadToken());
 
   const initialState: AppStoreState = {
-    ...INITIAL_APP_STATE,
+    ...APP_STORE_INITIAL_STATE,
     darkMode: previousDarkMode || prefersDarkMode,
     // isAuthenticated: tokenExists,
   };

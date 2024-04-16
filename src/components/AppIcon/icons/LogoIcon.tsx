@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
-import { AppIconProps } from '../AppIcon';
+import { IconProps } from '../utils';
 
-const LogoIcon: FunctionComponent<AppIconProps> = (props) => {
+const LogoIcon: FunctionComponent<IconProps> = (props) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36" {...props}>
       <path
