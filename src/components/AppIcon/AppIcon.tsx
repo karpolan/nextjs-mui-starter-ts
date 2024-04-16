@@ -2,7 +2,10 @@ import { ComponentType, FunctionComponent, SVGAttributes } from 'react';
 import { APP_ICON_SIZE } from '../config';
 import { IconName, ICONS } from './config';
 
-export interface AppIconProps extends SVGAttributes<SVGElement> {
+/**
+ * Props of the AppIcon component, also can be used for SVG icons
+ */
+export interface Props extends SVGAttributes<SVGElement> {
   color?: string;
   icon?: IconName | string;
   size?: string | number;
@@ -17,7 +20,7 @@ export interface AppIconProps extends SVGAttributes<SVGElement> {
  * @param {string} [title] - title/hint to show when the cursor hovers the icon
  * @param {string | number} [size] - size of the icon, default is ICON_SIZE
  */
-const AppIcon: FunctionComponent<AppIconProps> = ({
+const AppIcon: FunctionComponent<Props> = ({
   color,
   icon = 'default',
   size = APP_ICON_SIZE,

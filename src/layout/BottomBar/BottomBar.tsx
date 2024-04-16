@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FunctionComponent, useCallback } from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { usePathname, useRouter } from 'next/navigation';
-import AppIcon from '../../components/AppIcon';
-import { LinkToPage } from '../../utils/type';
+import AppIcon from '@/components/AppIcon';
+import { LinkToPage } from '@/utils/type';
 
 interface Props {
   items: Array<LinkToPage>;
