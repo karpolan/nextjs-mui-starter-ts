@@ -1,10 +1,12 @@
 'use client';
 import { FunctionComponent, PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+
 import { useAppStore } from '../store';
 import DARK_THEME from './dark';
 import LIGHT_THEME from './light';
 import MuiThemeProviderForNextJs from './MuiThemeProviderForNextJs';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function getThemeByDarkMode(darkMode: boolean) {
   return darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
@@ -30,7 +32,10 @@ const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({ children }) =>
 
   return (
     <MuiThemeProviderForNextJs>
-      <MuiThemeProvider theme={currentTheme}>{children}</MuiThemeProvider>
+      <MuiThemeProvider theme={currentTheme}>
+        <CssBaseline /* MUI Styles */ />
+        {children}
+      </MuiThemeProvider>
     </MuiThemeProviderForNextJs>
   );
 };
