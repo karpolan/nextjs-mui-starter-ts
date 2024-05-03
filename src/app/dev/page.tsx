@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { redirect } from 'next/navigation';
 import { Stack, Typography } from '@mui/material';
+import { IS_DEBUG } from '@/config';
 import DemoAppAlert from './components/DemoAppAlerts';
 import DemoAppButton from './components/DemoAppButton';
 import DemoAppIcon from './components/DemoAppIcon';
@@ -12,9 +13,8 @@ import DemoAppImage from './components/DemoAppImage';
  * @page Dev
  */
 const DevPage: NextPage = () => {
-  if (!process.env.NEXT_PUBLIC_DEBUG) {
+  if (!IS_DEBUG) {
     redirect('/');
-    return null; // Hide this page on when env.NEXT_PUBLIC_DEBUG is not set
   }
 
   return (

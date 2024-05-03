@@ -1,6 +1,6 @@
 {
   "name": "nextjs-mui-starter-ts",
-  "version": "0.1.5",
+  "version": "0.2.7",
   "description": "_DESCRIPTION_",
   "author": {
     "name": "Anton Karpenko",
@@ -37,6 +37,7 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@mui/material-nextjs": "latest",
     "clsx": "latest",
     "copy-to-clipboard": "latest",
     "next": "latest",

@@ -1,21 +1,17 @@
-'use client';
-import { FunctionComponent, PropsWithChildren, useCallback, useState } from 'react';
-import { Stack } from '@mui/material/';
-import { AppIconButton } from '../components';
-import BottomBar from './BottomBar';
-import ErrorBoundary from '../components/ErrorBoundary';
-import SideBar from './SideBar';
-import TopBar from './TopBar';
-import { LinkToPage } from '../utils/type';
-import { useAppStore } from '../store';
-import { useEventSwitchDarkMode, useOnMobile } from '../hooks';
-import { BOTTOM_BAR_DESKTOP_VISIBLE, TOP_BAR_DESKTOP_HEIGHT, TOP_BAR_MOBILE_HEIGHT } from './config';
+import { FunctionComponent, PropsWithChildren } from 'react';
+import { Stack } from '@mui/material';
+import { IS_DEBUG } from '@/config';
+import { LinkToPage } from '@/utils';
+import { useIsMobile } from '@/hooks';
+import { BottomBar } from './components';
+import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
+import { BOTTOM_BAR_DESKTOP_VISIBLE } from './config';
 
 // TODO: change to your app name or other word
-const TITLE_PUBLIC = '_TITLE_ app'; // Title for pages without/before authentication
+const TITLE_PUBLIC = 'Unauthorized - _TITLE_'; // Title for pages without/before authentication
 
 /**
- * SideBar navigation items with links
+ * SideBar navigation items with links for Public Layout
  */
 const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
@@ -35,16 +31,16 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   },
 ];
 
-if (process.env.NEXT_PUBLIC_DEBUG) {
+// Add debug links
+IS_DEBUG &&
   SIDE_BAR_ITEMS.push({
     title: '[Debug Tools]',
     path: '/dev',
     icon: 'settings',
   });
-}
 
 /**
- * BottomBar navigation items with links
+ * BottomBar navigation items with links for Public Layout
  */
 const BOTTOM_BAR_ITEMS: Array<LinkToPage> = [
   {
@@ -69,64 +65,23 @@ const BOTTOM_BAR_ITEMS: Array<LinkToPage> = [
  * @layout PublicLayout
  */
 const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
-  const onMobile = useOnMobile();
-  const [sideBarVisible, setSideBarVisible] = useState(false);
-  const [state] = useAppStore();
+  const onMobile = useIsMobile();
   const bottomBarVisible = onMobile || BOTTOM_BAR_DESKTOP_VISIBLE;
+
   const title = TITLE_PUBLIC;
-
-  const onSwitchDarkMode = useEventSwitchDarkMode();
-
-  const onSideBarOpen = useCallback(() => {
-    if (!sideBarVisible) setSideBarVisible(true); // Don't re-render Layout when SideBar is already open
-  }, [sideBarVisible]);
-
-  const onSideBarClose = useCallback(() => {
-    if (sideBarVisible) setSideBarVisible(false); // Don't re-render Layout when SideBar is already closed
-  }, [sideBarVisible]);
+  document.title = title; // Also Update Tab Title // TODO: Do we need this? Move it to useEffect()?
 
   return (
-    <Stack
-      sx={{
-        minHeight: '100vh', // Full screen height
-        paddingTop: onMobile ? TOP_BAR_MOBILE_HEIGHT : TOP_BAR_DESKTOP_HEIGHT,
-      }}
+    <TopBarAndSideBarLayout
+      sidebarItems={SIDE_BAR_ITEMS}
+      title={title}
+      variant="sidebarAlwaysTemporary"
     >
-      <Stack component="header">
-        <TopBar
-          startNode={<AppIconButton icon="logo" onClick={onSideBarOpen} />}
-          title={title}
-          endNode={
-            <AppIconButton
-              icon={state.darkMode ? 'day' : 'night'} // Variant 1
-              // icon="daynight" // Variant 2
-              title={state.darkMode ? 'Switch to Light mode' : 'Switch to Dark mode'}
-              onClick={onSwitchDarkMode}
-            />
-          }
-        />
-
-        <SideBar
-          anchor="left"
-          open={sideBarVisible}
-          variant="temporary"
-          items={SIDE_BAR_ITEMS}
-          onClose={onSideBarClose}
-        />
+      {children}
+      <Stack component="footer">
+        {bottomBarVisible && <BottomBar items={BOTTOM_BAR_ITEMS} />}
       </Stack>
-
-      <Stack
-        component="main"
-        sx={{
-          flexGrow: 1, // Takes all possible space
-          padding: 1,
-        }}
-      >
-        <ErrorBoundary name="Content">{children}</ErrorBoundary>
-      </Stack>
-
-      <Stack component="footer">{bottomBarVisible && <BottomBar items={BOTTOM_BAR_ITEMS} />}</Stack>
-    </Stack>
+    </TopBarAndSideBarLayout>
   );
 };
 
