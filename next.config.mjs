@@ -14,19 +14,6 @@ const nextConfig = {
 
   reactStrictMode: true,
   // reactStrictMode: false,
-
-  // Note: redirects() is not working with "next export" :(
-  // async redirects() {
-  //   const articleRedirects = ARTICLES.map((article) => {
-  //     const slug = article.replace(/ /g, '-');
-  //     return {
-  //       source: `/articles/${slug}`,
-  //       destination: `/article/${slug}`,
-  //       permanent: true,
-  //     };
-  //   });
-  //   return [...articleRedirects];
-  // },
 };
 
 export default nextConfig;
