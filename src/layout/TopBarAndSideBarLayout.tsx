@@ -120,12 +120,7 @@ const TopBarAndSideBarLayout: FunctionComponent<Props> = ({ children, sidebarIte
         paddingRight={1}
         paddingTop={1}
       >
-        <ErrorBoundary name="Content">
-          {/* Always Render Router's Outlet*/}
-          {/* <Outlet /> */}
-          {/* Also render children when it is provided */}
-          {children}
-        </ErrorBoundary>
+        <ErrorBoundary name="Content">{children}</ErrorBoundary>
       </Stack>
     </Stack>
   );
