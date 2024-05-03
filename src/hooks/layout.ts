@@ -11,7 +11,7 @@ export const SERVER_SIDE_MOBILE_FIRST = true; // true - for mobile, false - for 
  * Hook to detect onMobile vs. onDesktop using "resize" event listener
  * @returns {boolean} true when on onMobile, false when on onDesktop
  */
-export function useOnMobileByWindowsResizing() {
+export function useIsMobileByWindowsResizing() {
   const theme = useTheme();
   const { width } = useWindowsSize();
   const onMobile = width <= theme.breakpoints?.values?.sm ?? MOBILE_SCREEN_MAX_WIDTH;
@@ -22,7 +22,7 @@ export function useOnMobileByWindowsResizing() {
  * Hook to detect onMobile vs. onDesktop using Media Query
  * @returns {boolean} true when on onMobile, false when on onDesktop
  */
-function useOnMobileByMediaQuery() {
+function useIsMobileByMediaQuery() {
   // const onMobile = useMediaQuery({ maxWidth: MOBILE_SCREEN_MAX_WIDTH });
   const theme = useTheme();
   const onMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -33,9 +33,9 @@ function useOnMobileByMediaQuery() {
  * Hook to detect onMobile vs. onDesktop with Next.js workaround
  * @returns {boolean} true when on onMobile, false when on onDesktop
  */
-function useOnMobileForNextJs() {
+function useIsMobileForNextJs() {
   // const onMobile = useOnMobileByWindowsResizing();
-  const onMobile = useOnMobileByMediaQuery();
+  const onMobile = useIsMobileByMediaQuery();
   const [onMobileDelayed, setOnMobileDelayed] = useState(SERVER_SIDE_MOBILE_FIRST);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ function useOnMobileForNextJs() {
  */
 function useMobileOrDesktopByChangingBodyClass() {
   // const onMobile = useOnMobileByWindowsResizing();
-  const onMobile = useOnMobileByMediaQuery();
+  const onMobile = useIsMobileByMediaQuery();
 
   useEffect(() => {
     if (onMobile) {
@@ -72,5 +72,5 @@ function useMobileOrDesktopByChangingBodyClass() {
  */
 // export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_IS_MOBILE_VALUE : useOnMobileByWindowsResizing;
 // export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_IS_MOBILE_VALUE : useOnMobileByMediaQuery;
-export const useOnMobile = IS_SERVER ? () => SERVER_SIDE_MOBILE_FIRST : useOnMobileForNextJs;
+export const useIsMobile = IS_SERVER ? () => SERVER_SIDE_MOBILE_FIRST : useIsMobileForNextJs;
 export const useBodyClassForMobileOrDesktop = IS_SERVER ? () => undefined : useMobileOrDesktopByChangingBodyClass;

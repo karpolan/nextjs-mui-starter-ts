@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import copyToClipboard from 'copy-to-clipboard';
 import { Box, Card, CardContent, CardHeader, Snackbar, Tooltip } from '@mui/material';
-import AppIconButton, { AppIconButtonProps } from '@/components/AppIconButton/AppIconButton';
+import AppIconButton, { AppIconButtonProps } from '@/components/common/AppIconButton/AppIconButton';
 
 /**
  * Same as AppIconButton but with onClick handler that copies JSX code to Clipboard
