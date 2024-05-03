@@ -1,11 +1,12 @@
 'use client';
 import { FunctionComponent, PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import EmotionCacheProvider from './EmotionCacheProvider';
+
 import { useAppStore } from '../store';
 import DARK_THEME from './dark';
 import LIGHT_THEME from './light';
+import MuiThemeProviderForNextJs from './MuiThemeProviderForNextJs';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function getThemeByDarkMode(darkMode: boolean) {
   return darkMode ? createTheme(DARK_THEME) : createTheme(LIGHT_THEME);
@@ -14,9 +15,9 @@ function getThemeByDarkMode(darkMode: boolean) {
 /**
  * Renders composition of Emotion's CacheProvider + MUI's ThemeProvider to wrap content of entire App
  * The Light or Dark themes applied depending on global .darkMode state
- * @component ThemeProvider
+ * @component AppThemeProvider
  */
-const ThemeProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
+const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [state] = useAppStore();
   const [loading, setLoading] = useState(true);
 
@@ -30,15 +31,13 @@ const ThemeProvider: FunctionComponent<PropsWithChildren> = ({ children }) => {
   if (loading) return null; // Don't render anything until the component is mounted
 
   return (
-    <EmotionCacheProvider options={{ key: 'mui' }}>
-      {/* <StyledEngineProvider injectFirst> use this instead of Emotion's <CacheProvider/> if you want to use alternate styling library */}
+    <MuiThemeProviderForNextJs>
       <MuiThemeProvider theme={currentTheme}>
         <CssBaseline /* MUI Styles */ />
         {children}
       </MuiThemeProvider>
-      {/* </StyledEngineProvider> */}
-    </EmotionCacheProvider>
+    </MuiThemeProviderForNextJs>
   );
 };
 
-export default ThemeProvider;
+export default AppThemeProvider;

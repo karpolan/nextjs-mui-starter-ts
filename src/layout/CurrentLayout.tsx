@@ -1,6 +1,6 @@
 'use client';
 import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { useIsAuthenticated } from '../hooks';
+import { useIsAuthenticated } from '@/hooks';
 import PrivateLayout from './PrivateLayout';
 import PublicLayout from './PublicLayout';
 
