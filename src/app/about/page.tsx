@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import { NextPage } from 'next';
-import { AppLink } from '@/components';
+import { AppButton, AppLink } from '@/components';
 
 /**
  * Renders About Application page
@@ -15,8 +15,14 @@ const AboutPage: NextPage = () => {
           This application is a mix of{' '}
           <AppLink href="https://nextjs.org/docs/api-reference/create-next-app">Create Next App</AppLink> and{' '}
           <AppLink href="https://mui.com/">MUI</AppLink> with set of reusable components and utilities to build
-          professional <AppLink href="https://nextjs.org/">NextJS</AppLink> application faster.
+          professional <AppLink href="https://nextjs.org/">NextJS</AppLink> application faster. The source code is
+          available on <AppLink href="https://github.com/karpolan/nextjs-mui-starter-ts">GitHub</AppLink>.
         </Typography>
+        <Stack alignItems="center">
+          <AppButton color="secondary" href="https://github.com/karpolan/nextjs-mui-starter-ts">
+            Open GitHub
+          </AppButton>
+        </Stack>
       </Stack>
       <Stack>
         <Typography variant="h4">Reusable components</Typography>

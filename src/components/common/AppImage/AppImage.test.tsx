@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { randomText } from '../../../utils';
+import { randomText } from '@/utils';
 import AppImage from './AppImage';
 
 const ComponentToTest = AppImage;

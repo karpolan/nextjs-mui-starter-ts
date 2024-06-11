@@ -3,7 +3,7 @@ import { render, screen, within } from '@testing-library/react';
 import { ThemeProvider } from '../../../theme';
 import AppButton, { AppButtonProps } from './AppButton';
 import DefaultIcon from '@mui/icons-material/MoreHoriz';
-import { randomText, capitalize } from '../../../utils';
+import { randomText, capitalize } from '@/utils';
 
 /**
  * AppButton wrapped with Theme Provider

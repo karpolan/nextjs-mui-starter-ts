@@ -6,7 +6,7 @@ jest.mock('next/router', () => require('next-router-mock'));
 ---
 */
 import AppLink from '.';
-import { randomColor } from '../../../utils';
+import { capitalize, randomColor } from '@/utils';
 
 jest.mock('next/navigation', () => {
   const result = {
@@ -208,6 +208,8 @@ describe('<AppLink/> component', () => {
         ? expect(link).toHaveStyle('text-decoration: none')
         : expect(link).toHaveStyle('text-decoration: underline');
       // TODO: make "hover" test with "mouse moving"
+
+      expect(link).toHaveClass(`MuiLink-underline${capitalize(underline)}`);
     });
   });
 

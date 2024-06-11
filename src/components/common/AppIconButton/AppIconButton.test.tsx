@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import AppIconButton, { MUI_ICON_BUTTON_COLORS } from './AppIconButton';
 import { APP_ICON_SIZE } from '../../config';
-import { capitalize, randomColor, randomText } from '../../../utils';
+import { capitalize, randomColor, randomText } from '@/utils';
 import { ICONS } from '../AppIcon/config';
 
 const ComponentToTest = AppIconButton;

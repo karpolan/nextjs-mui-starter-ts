@@ -1,7 +1,7 @@
 'use client';
 import { Stack } from '@mui/material';
 import { useRouter } from 'next/navigation';
-import { AppButton } from '@/components';
+import { AppButton, AppLink } from '@/components';
 import { useAppStore } from '@/store';
 import { useEventLogout } from '@/hooks';
 import { sessionStorageSet } from '@/utils';
@@ -35,6 +35,11 @@ const LoginForm = () => {
           Logout User
         </AppButton>
       </Stack>
+
+      <div>
+        The source code is available at{' '}
+        <AppLink href="https://github.com/karpolan/nextjs-mui-starter-ts">GitHub</AppLink>
+      </div>
     </Stack>
   );
 };
