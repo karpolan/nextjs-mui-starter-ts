@@ -25,7 +25,8 @@ const Home: NextPage = () => {
           This application is a mix of{' '}
           <AppLink href="https://nextjs.org/docs/api-reference/create-next-app">Create Next App</AppLink> and{' '}
           <AppLink href="https://mui.com/">MUI</AppLink> with set of reusable components and utilities to build
-          professional <AppLink href="https://nextjs.org/">NextJS</AppLink> application faster.
+          professional <AppLink href="https://nextjs.org/">NextJS</AppLink> application faster. The source code is
+          available on <AppLink href="https://github.com/karpolan/nextjs-mui-starter-ts">GitHub</AppLink>.
         </Typography>
       </Stack>
 

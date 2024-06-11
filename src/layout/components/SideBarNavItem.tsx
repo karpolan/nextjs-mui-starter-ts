@@ -1,3 +1,4 @@
+'use client';
 import { FunctionComponent, MouseEventHandler } from 'react';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { AppIcon, AppLink } from '@/components';

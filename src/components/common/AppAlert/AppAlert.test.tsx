@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import AppAlert from './AppAlert';
-import { capitalize, randomText } from '../../../utils';
+import { capitalize, randomText } from '@/utils';
 import { AlertProps } from '@mui/material';
 
 const ComponentToTest = AppAlert;
